@@ -52,7 +52,7 @@ public class MonitoramentoGui extends TelaPanel{
         lblInfo3.setForeground(Color.decode("#ffffff"));
 
         // Imagem
-        ImageIcon img = new ImageIcon("imagens/LOGO_SPECTRA2.jpg");
+        ImageIcon img = new ImageIcon(getClass().getResource("/LOGO_SPECTRA2.jpg"));
         // Definir a dimensão
         Dimension maxDimImg = new Dimension(300, 70);
         // Redimensionar a imagem

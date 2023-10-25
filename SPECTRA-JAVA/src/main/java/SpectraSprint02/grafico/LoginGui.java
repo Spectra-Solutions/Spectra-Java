@@ -83,7 +83,7 @@ public class LoginGui extends TelaPanel {
         lblAviso.setForeground(Color.black);
 
         // Imagem
-        ImageIcon img = new ImageIcon("imagens/LOGO_SPECTRA3.png");
+        ImageIcon img = new ImageIcon(getClass().getResource("/LOGO_SPECTRA3.png"));
         // Definir a dimensão
         Dimension maxDimImg = new Dimension(300, 70);
         // Redimensionar a imagem

@@ -69,7 +69,7 @@ public abstract class MaquinaGui extends JFrame {
             txtSecao = new JPasswordField(15);
 
             // Imagem
-            img = new ImageIcon("imagens/LOGO_SPECTRA3.png");
+            img = new ImageIcon(getClass().getResource("/LOGO_SPECTRA3.png"));
             JLabel label = new JLabel( img, JLabel.CENTER);
             label.setSize(400,300);
             pnlForm.add(label);

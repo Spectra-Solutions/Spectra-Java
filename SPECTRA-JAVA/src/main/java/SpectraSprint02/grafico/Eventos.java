@@ -30,7 +30,7 @@ public class Eventos extends JFrame {
         this.add(telas);
 
         // Config
-        ImageIcon icon = new ImageIcon("imagens/LOGO_SPECTRA2-quadrado.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/LOGO_SPECTRA2-quadrado.png"));
         setIconImage(icon.getImage());
         this.setTitle("Spectra");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
