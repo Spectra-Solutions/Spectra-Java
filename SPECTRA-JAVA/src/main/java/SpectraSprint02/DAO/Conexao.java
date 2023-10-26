@@ -11,8 +11,8 @@ public class Conexao {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 
         dataSource.setUrl("jdbc:mysql://localhost:3306/Spectra");
-        dataSource.setUsername("Spectra");
-        dataSource.setPassword("Spectra123");
+        dataSource.setUsername("Ubuntu");
+        dataSource.setPassword("urubu100");
 
         conexaoDoBanco = new JdbcTemplate(dataSource);
     }
