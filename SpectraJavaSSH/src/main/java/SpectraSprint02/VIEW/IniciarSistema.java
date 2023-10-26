@@ -27,6 +27,13 @@ public class IniciarSistema {
         Integer comprimentoMinino = 8;
 
         System.out.println("""
+                Bem vindo ao Sistema de monitoramento Spectra!
+                
+              Para iniciar o monitoramento, insira suas credenciais!
+              
+                """);
+
+        System.out.println("""
                 Digite seu email:""");
         emailDigitado = inText.nextLine();
 
@@ -39,7 +46,7 @@ public class IniciarSistema {
         func.setSenha(senhaDigitada);
 
         if (emailDigitado.equals("") && senhaDigitada.equals("")){
-            System.out.println("Não pode deixar o campo vazio!");
+            System.out.println("Nao pode deixar o campo vazio!");
         }
 
         else
@@ -47,15 +54,21 @@ public class IniciarSistema {
             if (emailDigitado.indexOf("@") >= 0 && emailDigitado.indexOf(".") >= 0 && senhaDigitada.length() >= comprimentoMinino) {
 
                 if (validarFuncionario.existEmail(func.getEmail(), func.getSenha())) {
-                    System.out.println("Usuário logado com sucesso!!");
+                    System.out.println("""
+                            Usuario logado com sucesso!
+                            
+                           O monitoramento ja foi iniciado!
+                Acesse a dashboard para visualizar: http://34.234.237.115:3333
+                
+                            """);
                     validarMaquina();
                 } else {
-                    System.out.println("Usuário não existe no sistema!!");
+                    System.out.println("Usuario nao existe no sistema!!");
                     validarLogin();
                 }
             }
             else {
-                System.out.println("Falta @ no seu email!! ou falta . no seu email!! ou sua senha está incorreta!!");
+                System.out.println("Falta @ no seu email ou falta . no seu email!! ou sua senha está incorreta!!");
             }
         }
     }
@@ -64,9 +77,13 @@ public class IniciarSistema {
         String nomeDigitado, secaoDigitada;
 
         if (maquinaDao.existHostName(maquina.getHostName())){
-            System.out.println("Maquina existe, não precisa fazer um novo cadastro");
+            System.out.println("Maquina ja cadastrada no sistema!");
             capturarDados();
         } else {
+
+            System.out.println("""
+                                  Maquina ainda não cadastrada!
+                   """);
 
             System.out.println("Digite o nome que você quer atribuir a maquina:");
             nomeDigitado = inText.nextLine();
@@ -80,10 +97,12 @@ public class IniciarSistema {
             maquinaDao.getFkEmpresa(maquina.getNome(), maquina.getSecao(),func.getEmail(), func.getSenha());
 
             System.out.println("""
-                    Cadastrando nova maquina...""");
-
-            System.out.println("""
-                    Adicionando dados a maquina....""");
+                                  Maquina cadastrada!
+                            
+                           O monitoramento ja foi iniciado!
+                Acesse a dashboard para visualizar: http://34.234.237.115:3333
+                
+                   """);
 
             capturarDados();
         }
@@ -105,10 +124,16 @@ public class IniciarSistema {
 
         timer.scheduleAtFixedRate(tarefa, 0, SEGUNDOS);
 
-        System.out.println("Quer terminar a inserção?");
+        System.out.println("""
+                Para encerrar o monitoramento, digite 'sim'
+                """);
+
         String finalização = inText.nextLine();
 
-        if (finalização.equals("sim")){
+        if (finalização.equalsIgnoreCase("sim")){
+
+            System.out.println("Finalizando...");
+
             timer.cancel();
             System.exit(0);
         }
