@@ -5,6 +5,8 @@ import com.github.britooo.looca.api.group.discos.DiscoGrupo;
 import com.github.britooo.looca.api.group.rede.RedeParametros;
 import com.github.britooo.looca.api.group.sistema.Sistema;
 
+import java.util.List;
+
 public class Maquina {
     private Integer idMaquina;
     private String hostName;
@@ -12,21 +14,20 @@ public class Maquina {
     private String sistemaOperacional;
     private String secao;
     private Integer qtdDisco;
-    private Integer fkEmpresaMaquina;
+    private Integer fkEmpresa;
     private Looca looca = new Looca();
-    private Sistema sistema = looca.getSistema();
 
-    public Maquina(String hostName, String nome, String sistemaOperacional, String secao, Integer qtdDisco, Integer fkEmpresaMaquina) {
+    public Maquina(String hostName, String nome, String sistemaOperacional, String secao, Integer qtdDisco) {
         this.idMaquina = null;
         this.hostName = hostName;
         this.nome = nome;
         this.sistemaOperacional = sistemaOperacional;
         this.secao = secao;
         this.qtdDisco = qtdDisco;
-        this.fkEmpresaMaquina = fkEmpresaMaquina;
+        this.fkEmpresa = null;
     }
 
-    public Maquina() {}
+    public Maquina(){}
 
     public Integer getIdMaquina() {
         return idMaquina;
@@ -36,28 +37,13 @@ public class Maquina {
         this.idMaquina = idMaquina;
     }
 
-    public String getSistemaOperacional() {
-        sistemaOperacional = sistema.getSistemaOperacional();
-        return sistemaOperacional;
-    }
-
-    public void setSistemaOperacional(String sistemaOperacional) {
-        this.sistemaOperacional = sistemaOperacional;
-    }
-
-    public Integer getQtdDisco(){
-        DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
-        qtdDisco = grupoDeDiscos.getQuantidadeDeDiscos();
-        return qtdDisco;
-    }
-
-    public String getHostName(){
+    public String getHostName() {
         RedeParametros redeParametro = looca.getRede().getParametros();
         hostName = redeParametro.getHostName();
         return hostName;
     }
 
-    public void setHostName(String hostName){
+    public void setHostName(String hostName) {
         this.hostName = hostName;
     }
 
@@ -69,6 +55,16 @@ public class Maquina {
         this.nome = nome;
     }
 
+    public String getSistemaOperacional() {
+        Sistema sistema = looca.getSistema();
+        sistemaOperacional = sistema.getSistemaOperacional();
+        return sistemaOperacional;
+    }
+
+    public void setSistemaOperacional(String sistemaOperacional) {
+        this.sistemaOperacional = sistemaOperacional;
+    }
+
     public String getSecao() {
         return secao;
     }
@@ -77,22 +73,21 @@ public class Maquina {
         this.secao = secao;
     }
 
-    public Integer getFkEmpresaMaquina() {
-        return fkEmpresaMaquina;
+    public Integer getQtdDisco() {
+        DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
+        qtdDisco = grupoDeDiscos.getQuantidadeDeDiscos();
+        return qtdDisco;
     }
 
-    public void setFkEmpresaMaquina(Integer fkEmpresaMaquina) {
-        this.fkEmpresaMaquina = fkEmpresaMaquina;
+    public void setQtdDisco(Integer qtdDisco) {
+        this.qtdDisco = qtdDisco;
     }
 
-    @Override
-    public String toString() {
-        return String.format("""
-                HostName: %s,
-                Nome: %s,
-                SistemaOperacional: %s,
-                Seção: %s,
-                Quantidade de discos: %d
-                """, hostName, nome, sistemaOperacional, secao, qtdDisco);
+    public Integer getFkEmpresa() {
+        return fkEmpresa;
+    }
+
+    public void setFkEmpresa(Integer fkEmpresa) {
+        this.fkEmpresa = fkEmpresa;
     }
 }

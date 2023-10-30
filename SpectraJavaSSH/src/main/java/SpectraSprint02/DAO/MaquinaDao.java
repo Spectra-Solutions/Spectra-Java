@@ -17,7 +17,7 @@ public class MaquinaDao {
         try{
             idEmpresa = con.queryForObject(sql, Integer.class, email, senha);
             maquina.setFkEmpresa(idEmpresa);
-            salvarMaquina(nome, secao, idEmpresa);
+            salvarMaquina(nome, secao);
         } catch (EmptyResultDataAccessException e){
             System.out.println("Nenhum resultado encontrado na fkEmpresa!!");
         }
@@ -28,7 +28,7 @@ public class MaquinaDao {
                 new Object[] {hostName}, Boolean.class);
     }
 
-    public void salvarMaquina(String nome, String secao, Integer idEmpresa){
+    public void salvarMaquina(String nome, String secao){
         con.update("INSERT INTO Maquina (idMaquina, hostName, nome, sistemaOperacional, secao, qtdDisco, fkEmpresaMaquina) VALUES (?, ?, ?, ?, ?, ?, ?)",
                 maquina.getIdMaquina(), maquina.getHostName(), nome, maquina.getSistemaOperacional(), secao, maquina.getQtdDisco(), maquina.getFkEmpresa());
     }

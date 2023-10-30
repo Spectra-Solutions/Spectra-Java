@@ -2,12 +2,10 @@ package SpectraSprint02.DAO;
 
 import SpectraSprint02.DTO.DiscoClass;
 import com.github.britooo.looca.api.core.Looca;
-import com.github.britooo.looca.api.group.discos.Disco;
 import com.github.britooo.looca.api.group.discos.Volume;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DiscoDao {

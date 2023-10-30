@@ -4,40 +4,42 @@ import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 
 public class MemoriaRam {
-    private Integer fkComponenteRAM;
-    private Integer idRegistroMemoriaRam;
+    private Integer idRegistroMemoriaRAM;
+    private Long consumoAtual;
     private Double armazenamentoTotal;
     private Double armazenamentoDisponivel;
-    private Double armazenamentoEmUso;
-    private Long consumoAtual;
+    private Integer fkComponenteRAM;
+    private Integer fkMaquina;
     private Looca looca = new Looca();
     private Memoria memoriaRam = looca.getMemoria();
     private Integer GB = 1024 * 1024 * 1024;
 
-    public MemoriaRam(Double armazenamentoTotal, Double armazenamentoDisponivel, Long consumoAtual, Double armazenamentoEmUso) {
-        this.fkComponenteRAM = null;
-        this.idRegistroMemoriaRam = null;
+    public MemoriaRam(Long consumoAtual, Double armazenamentoTotal, Double armazenamentoDisponivel) {
+        this.idRegistroMemoriaRAM = null;
+        this.consumoAtual = consumoAtual;
         this.armazenamentoTotal = armazenamentoTotal;
         this.armazenamentoDisponivel = armazenamentoDisponivel;
-        this.consumoAtual = consumoAtual;
-        this.armazenamentoEmUso = armazenamentoEmUso;
+        this.fkComponenteRAM = null;
+        this.fkMaquina = null;
     }
+
     public MemoriaRam(){}
 
-    public Integer getFkComponenteRAM() {
-        return fkComponenteRAM;
+    public Integer getIdRegistroMemoriaRAM() {
+        return idRegistroMemoriaRAM;
     }
 
-    public void setFkComponenteRAM(Integer fkComponenteRAM) {
-        this.fkComponenteRAM = fkComponenteRAM;
+    public void setIdRegistroMemoriaRAM(Integer idRegistroMemoriaRAM) {
+        this.idRegistroMemoriaRAM = idRegistroMemoriaRAM;
     }
 
-    public Integer getIdRegistroMemoriaRam() {
-        return idRegistroMemoriaRam;
+    public Long getConsumoAtual() {
+        consumoAtual = memoriaRam.getEmUso();
+        return consumoAtual;
     }
 
-    public void setIdRegistroMemoriaRam(Integer idRegistroMemoriaRam) {
-        this.idRegistroMemoriaRam = idRegistroMemoriaRam;
+    public void setConsumoAtual(Long consumoAtual) {
+        this.consumoAtual = consumoAtual;
     }
 
     public Double getArmazenamentoTotal() {
@@ -58,30 +60,19 @@ public class MemoriaRam {
         this.armazenamentoDisponivel = armazenamentoDisponivel;
     }
 
-    public Double getArmazenamentoEmUso() {
-        armazenamentoEmUso = (double) (memoriaRam.getEmUso() / GB);
-        return armazenamentoEmUso;
+    public Integer getFkComponenteRAM() {
+        return fkComponenteRAM;
     }
 
-    public void setArmazenamentoEmUso(Double armazenamentoEmUso) {
-        this.armazenamentoEmUso = armazenamentoEmUso;
+    public void setFkComponenteRAM(Integer fkComponenteRAM) {
+        this.fkComponenteRAM = fkComponenteRAM;
     }
 
-    public Long getConsumoAtual() {
-        consumoAtual = memoriaRam.getEmUso();
-        return consumoAtual;
+    public Integer getFkMaquina() {
+        return fkMaquina;
     }
 
-    public void setConsumoAtual(Long consumoAtual) {
-        this.consumoAtual = consumoAtual;
-    }
-
-    @Override
-    public String toString() {
-        return "MemoriaRam{" +
-                "armazenamentoTotal=" + armazenamentoTotal +
-                ", armazenamentoDisponivel=" + armazenamentoDisponivel +
-                ", ConsumoAtual=" + consumoAtual +
-                '}';
+    public void setFkMaquina(Integer fkMaquina) {
+        this.fkMaquina = fkMaquina;
     }
 }

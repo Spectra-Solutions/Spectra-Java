@@ -27,22 +27,20 @@ public class IniciarSistema {
         Integer comprimentoMinino = 8;
 
         System.out.println("""
-                Bem vindo ao Sistema de monitoramento Spectra!
+                  Bem vindo ao Sistema de monitoramento Spectra!
                 
               Para iniciar o monitoramento, insira suas credenciais!
-              
-                """);
+              """);
+
 
         System.out.println("""
                 Digite seu email:""");
         emailDigitado = inText.nextLine();
-
         func.setEmail(emailDigitado);
 
         System.out.println("""
                 Digite sua senha:""");
         senhaDigitada = inText.nextLine();
-
         func.setSenha(senhaDigitada);
 
         if (emailDigitado.equals("") && senhaDigitada.equals("")){
@@ -59,7 +57,6 @@ public class IniciarSistema {
                             
                            O monitoramento ja foi iniciado!
                 Acesse a dashboard para visualizar: http://34.234.237.115:3333
-                
                             """);
                     validarMaquina();
                 } else {
@@ -101,7 +98,6 @@ public class IniciarSistema {
                             
                            O monitoramento ja foi iniciado!
                 Acesse a dashboard para visualizar: http://34.234.237.115:3333
-                
                    """);
 
             capturarDados();
@@ -131,7 +127,6 @@ public class IniciarSistema {
         String finalização = inText.nextLine();
 
         if (finalização.equalsIgnoreCase("sim")){
-
             System.out.println("Finalizando...");
 
             timer.cancel();

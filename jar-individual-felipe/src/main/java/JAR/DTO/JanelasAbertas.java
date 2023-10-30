@@ -11,12 +11,12 @@ public class JanelasAbertas {
 
     private List <Janela> janelas;
     private List <String> janelasProibidas;
-    private Integer idMaquina;
+    private Integer fkMaquina;
     Maquina maquina = new Maquina();
 
     public JanelasAbertas() {
         this.janelas = new ArrayList<>();
-        this.idMaquina = maquina.getIdMaquina();
+        this.fkMaquina = null;
         this.janelasProibidas = null;
     }
 
@@ -28,18 +28,33 @@ public class JanelasAbertas {
 
     public void verificarJanelas(){
         JanelasAbertasDao janelasAbertasDao = new JanelasAbertasDao();
-        janelasProibidas = janelasAbertasDao.getJanelasProibidas(1);
+
+        janelasProibidas = janelasAbertasDao.getJanelasProibidas(fkMaquina);
+
         List <Janela> janelas = getJanelas();
+
         for (Janela janela : janelas) {
             String janelaDaVez = janela.getTitulo();
+
             for (String janelaProibida :janelasProibidas) {
+
                 if (janelaDaVez.contains(janelaProibida)){
                     System.out.println("""
                             Janela proibida está aberta
                             Nome: %s""".formatted(janelaDaVez));
-                    janelasAbertasDao.registrarInfracao(1, janelaDaVez);
+                    janelasAbertasDao.registrarInfracao(fkMaquina, janelaDaVez);
                 }
+
             }
+
         }
+    }
+
+    public Integer getFkMaquina() {
+        return fkMaquina;
+    }
+
+    public void setFkMaquina(Integer fkMaquina) {
+        this.fkMaquina = fkMaquina;
     }
 }

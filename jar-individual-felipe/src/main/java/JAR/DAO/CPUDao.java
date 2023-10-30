@@ -9,24 +9,35 @@ public class CPUDao {
     JdbcTemplate con = conexao.getConexaoDoBanco();
     CPU cpu = new CPU();
 
-    public Integer pegarIdCPU(){
+    public void getFkComponenteCPU(){
         String sql = "SELECT idComponente FROM Componente WHERE idComponente = 1";
-        Integer idComponenteCPU = null;
 
-        try {
-            idComponenteCPU = con.queryForObject(sql, Integer.class);
-            cpu.setFkComponenteCPU(idComponenteCPU);
-            System.out.println("ESTOU NO TRY DA CPU");
-            insertDadosCpu();
+        Integer idComponenteCpu = null;
+
+        try{
+            idComponenteCpu = con.queryForObject(sql, Integer.class);
+            cpu.setFkComponenteCPU(idComponenteCpu);
+            getfkMaquina();
         } catch (EmptyResultDataAccessException e){
-            System.out.println("Nenhum resultado encontrado na CPU!!");
+            System.out.println("Nenhum resultado encontrado na CPU!");
         }
-
-        return idComponenteCPU;
     }
 
-    public void insertDadosCpu(){
-        con.update("INSERT INTO RegistroComponente (idRegistroComponente, consumoAtual, fkComponente) VALUES (?, ?, ?)",
-                  cpu.getIdRegistroCPU(), cpu.getConsumoAtual(), cpu.getFkComponenteCPU());
+    public void getfkMaquina(){
+        String sql = "SELECT idMaquina FROM Maquina";
+        Integer idMaquina = null;
+
+        try {
+            idMaquina = con.queryForObject(sql, Integer.class);
+            cpu.setFkMaquina(idMaquina);
+            salvarDadosCPU();
+        } catch (EmptyResultDataAccessException e){
+            System.out.println("Nenhum resultado no idMaquina na CPU!");
+        }
+    }
+
+    public void salvarDadosCPU(){
+        con.update("INSERT INTO RegistroComponente (idRegistroComponente, especificacao, consumoAtual, fkComponente, fkMaquina) VALUES (?, ?, ?, ?, ?)",
+                cpu.getIdRegistroCPU(), cpu.getEspecificacao(), cpu.getConsumoAtual(), cpu.getFkComponenteCPU(), cpu.getFkMaquina());
     }
 }

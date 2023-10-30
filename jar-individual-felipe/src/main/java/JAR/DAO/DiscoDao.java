@@ -1,36 +1,58 @@
 package JAR.DAO;
 
-import JAR.DTO.Disco;
+import JAR.DTO.DiscoClass;
+import com.github.britooo.looca.api.core.Looca;
+import com.github.britooo.looca.api.group.discos.Volume;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.List;
 
 public class DiscoDao {
     Conexao conexao = new Conexao();
     JdbcTemplate con = conexao.getConexaoDoBanco();
-    Disco disco01 = new Disco();
-    Disco disco02 = new Disco();
-    public Integer pegarIdDisco(){
+    DiscoClass disco = new DiscoClass();
+    Looca looca = new Looca();
+    List<Volume> volumes = looca.getGrupoDeDiscos().getVolumes();
+    private Integer GB = 1024 * 1024 * 1024;
+
+    public void getFkComponenteDisco(){
         String sql = "SELECT idComponente FROM Componente WHERE idComponente = 3";
+
         Integer idComponenteDisco = null;
 
         try{
             idComponenteDisco = con.queryForObject(sql, Integer.class);
-            disco01.setFkComponenteDisco(idComponenteDisco);
-            disco02.setFkComponenteDisco(idComponenteDisco);
-            insertDadosCpu();
+            disco.setFkComponenteDisco(idComponenteDisco);
+            getfkMaquina();
         } catch (EmptyResultDataAccessException e){
-            System.out.println("Nenhum resultado encontrado no Disco!!");
+            System.out.println("Nenhum resultado encontrado no Disco!");
         }
-
-        return idComponenteDisco;
     }
 
-    public void insertDadosCpu(){
-        con.update("INSERT INTO RegistroComponente (idRegistroComponente, consumoAtual, armazenamentoDisponivel, armazenamentoTotal, fkComponente) VALUES (?, ?, ?, ?, ?)",
-                disco01.getIdRegistroDisco(), disco01.getConsumoAtual(), disco01.getArmazenamentoDisponivel(), disco01.getArmazenamentoTotal(), disco01.getFkComponenteDisco());
+    public void getfkMaquina(){
+        String sql = "SELECT idMaquina FROM Maquina";
+        Integer idMaquina = null;
 
-        con.update("INSERT INTO RegistroComponente (idRegistroComponente, consumoAtual, armazenamentoDisponivel, armazenamentoTotal, fkComponente) VALUES (?, ?, ?, ?, ?)",
-                disco02.getIdRegistroDisco(), disco02.getConsumoAtual(), disco02.getArmazenamentoDisponivel(), disco02.getArmazenamentoTotal(), disco02.getFkComponenteDisco());
+        try {
+            idMaquina = con.queryForObject(sql, Integer.class);
+            disco.setFkMaquina(idMaquina);
+            salvarDadosDisco();
+        } catch (EmptyResultDataAccessException e){
+            System.out.println("Nenhum resultado no idMaquina na ram!");
+        }
     }
 
+    public void salvarDadosDisco(){
+        for (int i = 0; i < volumes.size(); i++){
+            Volume volumeDaVez = volumes.get(i);
+
+            disco.setConsumoAtual(volumeDaVez.getTotal() - volumeDaVez.getDisponivel());
+            disco.setArmazenamentoTotal((double) (volumeDaVez.getTotal() / GB));
+            disco.setArmazenamentoDisponivel((double) (volumeDaVez.getDisponivel() / GB));
+
+            con.update("INSERT INTO RegistroComponente (idRegistroComponente, consumoAtual, armazenamentoTotal, armazenamentoDisponivel, fkComponente, fkMaquina) VALUES (?, ?, ?, ?, ?, ?)",
+                    disco.getIdRegistroDisco(), disco.getConsumoAtual(), disco.getArmazenamentoTotal(), disco.getArmazenamentoDisponivel(), disco.getFkComponenteDisco(), disco.getFkMaquina());
+        }
+    }
 }

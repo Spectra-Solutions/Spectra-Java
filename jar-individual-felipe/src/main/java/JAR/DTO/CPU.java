@@ -4,31 +4,25 @@ import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.processador.Processador;
 
 public class CPU {
-    private Integer fkComponenteCPU;
     private Integer idRegistroCPU;
     private String especificacao;
     private Long consumoAtual;
     private Long tempoAtividade;
+    private Integer fkComponenteCPU;
+    private Integer fkMaquina;
     private Looca looca = new Looca();
     private Processador processador = looca.getProcessador();
 
-    public CPU(String especificacao, Long consumoAtual, Long tempoAtividade) {
-        this.fkComponenteCPU = null;
+    public CPU( String especificacao, Long consumoAtual, Long tempoAtividade) {
         this.idRegistroCPU = null;
         this.especificacao = especificacao;
         this.consumoAtual = consumoAtual;
         this.tempoAtividade = tempoAtividade;
+        this.fkComponenteCPU = null;
+        this.fkMaquina = null;
     }
 
     public CPU(){}
-
-    public Integer getFkComponenteCPU() {
-        return fkComponenteCPU;
-    }
-
-    public void setFkComponenteCPU(Integer fkComponenteCPU) {
-        this.fkComponenteCPU = fkComponenteCPU;
-    }
 
     public Integer getIdRegistroCPU() {
         return idRegistroCPU;
@@ -40,7 +34,6 @@ public class CPU {
 
     public String getEspecificacao() {
         especificacao = processador.getNome();
-        System.out.println("Seu computador é: " + especificacao);
         return especificacao;
     }
 
@@ -65,15 +58,19 @@ public class CPU {
         this.tempoAtividade = tempoAtividade;
     }
 
-    @Override
-    public String toString() {
-        return "CPU{" +
-                "fkComponenteCPU=" + fkComponenteCPU +
-                ", idRegistroCPU=" + idRegistroCPU +
-                ", especificacao='" + especificacao + '\'' +
-                ", consumoAtual=" + consumoAtual +
-                ", tempoAtividade=" + tempoAtividade +
-                ", looca=" + looca +
-                '}';
+    public Integer getFkComponenteCPU() {
+        return fkComponenteCPU;
+    }
+
+    public void setFkComponenteCPU(Integer fkComponenteCPU) {
+        this.fkComponenteCPU = fkComponenteCPU;
+    }
+
+    public Integer getFkMaquina() {
+        return fkMaquina;
+    }
+
+    public void setFkMaquina(Integer fkMaquina) {
+        this.fkMaquina = fkMaquina;
     }
 }

@@ -9,23 +9,34 @@ public class RedeDao {
     JdbcTemplate con = conexao.getConexaoDoBanco();
     Rede rede = new Rede();
 
-    public Integer pegarIdRede(){
+    public void getFkComponenteRede(){
         String sql = "SELECT idComponente FROM Componente WHERE idComponente = 4";
         Integer idComponenteRede = null;
 
-        try {
+        try{
             idComponenteRede = con.queryForObject(sql, Integer.class);
             rede.setFkComponenteRede(idComponenteRede);
-            insertDadosRede();
+            getfkMaquina();
         } catch (EmptyResultDataAccessException e){
-            System.out.println("Nenhum resultado encontrado na REDE!!");
+            System.out.println("Nenhum resultado encontrado na Rede!");
         }
-
-        return idComponenteRede;
     }
 
-    public void insertDadosRede(){
-        con.update("INSERT INTO RegistroComponente (idRegistroComponente, consumoUpload, consumoDownload, fkComponente) VALUES (?, ?, ?, ?)",
-                        rede.getIdRegistroRede(), rede.getConsumoUpload(), rede.getConsumoDownload(), rede.getFkComponenteRede());
+    public void getfkMaquina(){
+        String sql = "SELECT idMaquina FROM Maquina";
+        Integer idMaquina = null;
+
+        try {
+            idMaquina = con.queryForObject(sql, Integer.class);
+            rede.setFkMaquina(idMaquina);
+            salvarDadosRede();
+        } catch (EmptyResultDataAccessException e){
+            System.out.println("Nenhum resultado no idMaquina na rede!");
+        }
+    }
+
+    public void salvarDadosRede(){
+        con.update("INSERT INTO RegistroComponente (idRegistroComponente, consumoUpload, consumoDownload, fkComponente, fkMaquina) VALUES (?, ?, ?, ?, ?)",
+                rede.getIdRegistroRede(), rede.getConsumoUpload(), rede.getConsumoDownload(), rede.getFkComponenteRede(), rede.getFkMaquina());
     }
 }

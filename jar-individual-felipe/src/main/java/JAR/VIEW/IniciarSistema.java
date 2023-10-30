@@ -2,9 +2,11 @@ package JAR.VIEW;
 
 import JAR.DAO.*;
 import JAR.DTO.Funcionario;
+import JAR.DTO.JanelasAbertas;
 import JAR.DTO.Maquina;
 
 import javax.swing.*;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -17,65 +19,95 @@ public class IniciarSistema {
     RedeDao redeDao = new RedeDao();
     CPUDao cpuDao = new CPUDao();
     DiscoDao discoDao = new DiscoDao();
+    ProcessoDao processoDao = new ProcessoDao();
+    JanelasAbertasDao janelasAbertasDao = new JanelasAbertasDao();
     Timer timer = new Timer();
+    Scanner inText = new Scanner(System.in);
 
     public void validarLogin(){
-        String emailJframe, senhaJframe;
+        String emailDigitado, senhaDigitada;
         Integer comprimentoMinino = 8;
 
-        emailJframe = JOptionPane.showInputDialog("""
+        System.out.println("""
+                Bem vindo ao Sistema de monitoramento Spectra!
+                
+              Para iniciar o monitoramento, insira suas credenciais!
+                """);
+
+        System.out.println("""
                 Digite seu email:""");
-        func.setEmail(emailJframe);
+        emailDigitado = inText.nextLine();
+        func.setEmail(emailDigitado);
 
-        senhaJframe = JOptionPane.showInputDialog("""
+        System.out.println("""
                 Digite sua senha:""");
-        func.setSenha(senhaJframe);
+        senhaDigitada = inText.nextLine();
+        func.setSenha(senhaDigitada);
 
-        if (emailJframe.equals("")){
-            JOptionPane.showMessageDialog(null, "Não pode deixar o campo vazio");
+        if (emailDigitado.equals("") && senhaDigitada.equals("")){
+            System.out.println("Nao pode deixar o campo vazio!");
         }
 
         else
         {
-            if (emailJframe.indexOf("@") >= 0 && emailJframe.indexOf(".") >= 0 && senhaJframe.length() >= comprimentoMinino) {
+            if (emailDigitado.indexOf("@") >= 0 && emailDigitado.indexOf(".") >= 0 && senhaDigitada.length() >= comprimentoMinino) {
 
                 if (validarFuncionario.existEmail(func.getEmail(), func.getSenha())) {
-                    JOptionPane.showMessageDialog(null, "Usuário logado com sucesso!!");
+                    System.out.println("""
+                            Usuario logado com sucesso!
+                            
+                           O monitoramento ja foi iniciado!
+                Acesse a dashboard para visualizar: http://34.234.237.115:3333
+                            """);
                     validarMaquina();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Usuário não existe no sistema!!");
+                    System.out.println("Usuario nao existe no sistema!!");
+                    validarLogin();
                 }
-
             }
             else {
-                JOptionPane.showMessageDialog(null, "Falta @ no seu email!! ou falta . no seu email!! ou sua senha está incorreta!!");
+                System.out.println("Falta @ no seu email ou falta . no seu email!! ou sua senha está incorreta!!");
             }
+
         }
     }
+
+
+
 
     public void validarMaquina(){
-        String nomeJframe, secaoJframe;
+        String nomeDigitado, secaoDigitada;
 
         if (maquinaDao.existHostName(maquina.getHostName())){
-            System.out.println("Maquina existe, não precisa fazer um novo cadastro");
+            System.out.println("Maquina ja cadastrada no sistema!");
             capturarDados();
         } else {
-            nomeJframe = JOptionPane.showInputDialog("""
-                Digite o nome que você quer atribuir a maquina:""");
-            maquina.setNome(nomeJframe);
+            System.out.println("""
+                                  Maquina ainda não cadastrada!
+                   """);
 
-            secaoJframe = JOptionPane.showInputDialog("""
-                Digite a seção que a máquina se encontra: """);
-            maquina.setSecao(secaoJframe);
+            System.out.println("Digite o nome que você quer atribuir a maquina:");
+            nomeDigitado = inText.nextLine();
+            maquina.setNome(nomeDigitado);
 
-            maquinaDao.pegarIdEmpresa(maquina.getNome(), maquina.getSecao(),func.getEmail(), func.getSenha());
 
-            JOptionPane.showMessageDialog(null, """
-                    Cadastrando nova maquina...
-                    """);
+            System.out.println("Digite a seção que a máquina se encontra: ");
+            secaoDigitada = inText.nextLine();
+            maquina.setSecao(secaoDigitada);
+
+            maquinaDao.getFkEmpresa(maquina.getNome(), maquina.getSecao(),func.getEmail(), func.getSenha());
+
+            System.out.println("""
+                                  Maquina cadastrada!
+                            
+                           O monitoramento ja foi iniciado!
+                Acesse a dashboard para visualizar: http://34.234.237.115:3333
+                   """);
+
             capturarDados();
         }
     }
+
 
     public void capturarDados(){
         final  long SEGUNDOS = (1000 * 5);
@@ -83,13 +115,28 @@ public class IniciarSistema {
         TimerTask tarefa = new TimerTask() {
             @Override
             public void run() {
-                cpuDao.pegarIdCPU();
-                memoriaRamDao.pegarIdRam();
-                discoDao.pegarIdDisco();
-                redeDao.pegarIdRede();
+                cpuDao.getFkComponenteCPU();
+                memoriaRamDao.getFkComponenteRAM();
+                discoDao.getFkComponenteDisco();
+                redeDao.getFkComponenteRede();
+                processoDao.getfkMaquina();
+                janelasAbertasDao.getfkMaquina();
             }
         };
 
         timer.scheduleAtFixedRate(tarefa, 0, SEGUNDOS);
+
+        System.out.println("""
+                Para encerrar o monitoramento, digite 'sim'
+                """);
+
+        String finalização = inText.nextLine();
+
+        if (finalização.equalsIgnoreCase("sim")){
+            System.out.println("Finalizando...");
+
+            timer.cancel();
+            System.exit(0);
+        }
     }
 }
