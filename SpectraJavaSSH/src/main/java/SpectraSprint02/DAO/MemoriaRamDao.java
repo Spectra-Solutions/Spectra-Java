@@ -27,6 +27,8 @@ public class MemoriaRamDao {
         String sql = "SELECT idMaquina FROM Maquina";
         Integer idMaquina = null;
 
+        System.out.println("Branch!!");
+
         try {
             idMaquina = con.queryForObject(sql, Integer.class);
             memoriaRam.setFkMaquina(idMaquina);
