@@ -29,7 +29,7 @@ public class JanelasAbertas {
     public void verificarJanelas(){
         JanelasAbertasDao janelasAbertasDao = new JanelasAbertasDao();
 
-        janelasProibidas = janelasAbertasDao.getJanelasProibidas(fkMaquina);
+        janelasProibidas = janelasAbertasDao.getJanelasProibidas(janelasAbertasDao.getfkMaquina());
 
         List <Janela> janelas = getJanelas();
 

@@ -1,6 +1,7 @@
 package JAR.DAO;
 
 import JAR.DTO.JanelasAbertas;
+import JAR.DTO.Maquina;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -11,17 +12,17 @@ public class JanelasAbertasDao {
     JdbcTemplate con = conexao.getConexaoDoBanco();
     JanelasAbertas janelasAbertas = new JanelasAbertas();
 
-    public void getfkMaquina(){
-        String sql = "SELECT idMaquina FROM Maquina";
+    public Integer getfkMaquina(){
+        Maquina maquina = new Maquina();
+        String sql = "SELECT idMaquina FROM Maquina where hostName = ?";
         Integer idMaquina = null;
 
         try {
-            idMaquina = con.queryForObject(sql, Integer.class);
-            janelasAbertas.setFkMaquina(idMaquina);
-            getJanelasProibidas(janelasAbertas.getFkMaquina());
+            idMaquina = con.queryForObject(sql, Integer.class, maquina.getHostName());
         } catch (EmptyResultDataAccessException e){
             System.out.println("Nenhum resultado encontrado no idMaquina Janelas");
         }
+        return idMaquina;
     }
 
     public List <String> getJanelasProibidas(Integer idMaquina) {
@@ -30,7 +31,6 @@ public class JanelasAbertasDao {
 
         try {
             janelasProibidas = con.queryForObject(sql, List.class, idMaquina);
-            janelasAbertas.verificarJanelas();
         } catch (EmptyResultDataAccessException e){
             System.out.println("Nenhum resultado encontrado");
         }
