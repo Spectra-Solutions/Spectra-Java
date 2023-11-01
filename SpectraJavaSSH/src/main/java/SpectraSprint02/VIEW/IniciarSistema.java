@@ -115,6 +115,9 @@ public class IniciarSistema {
                 discoDao.getFkComponenteDisco();
                 redeDao.getFkComponenteRede();
                 processoDao.getfkMaquina();
+                System.out.println("""
+                        Dados inseridos!!
+                        """);
             }
         };
 
