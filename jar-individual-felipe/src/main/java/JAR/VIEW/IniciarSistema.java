@@ -110,6 +110,7 @@ public class IniciarSistema {
 
 
     public void capturarDados(){
+        JanelasAbertas janelasAbertas = new JanelasAbertas();
         final  long SEGUNDOS = (1000 * 5);
 
         TimerTask tarefa = new TimerTask() {
@@ -120,7 +121,7 @@ public class IniciarSistema {
                 discoDao.getFkComponenteDisco();
                 redeDao.getFkComponenteRede();
                 processoDao.getfkMaquina();
-                janelasAbertasDao.getfkMaquina();
+                janelasAbertas.verificarJanelas();
             }
         };
 
