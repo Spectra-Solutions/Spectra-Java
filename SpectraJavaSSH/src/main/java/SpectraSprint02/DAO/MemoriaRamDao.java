@@ -10,7 +10,7 @@ public class MemoriaRamDao {
     JdbcTemplate conSqlServer = conexao.getConexaoDoBancoSQLServer();
     MemoriaRam memoriaRam = new MemoriaRam();
 
-    public void getFkComponenteRAM(){
+    public void getFkComponenteRAM(String hostname){
         String sql = "SELECT idComponente FROM Componente WHERE idComponente = 2";
 
         Integer idComponenteRAM = null;
@@ -22,7 +22,7 @@ public class MemoriaRamDao {
             try{
                 idComponenteRAM = conSqlServer.queryForObject(sql, Integer.class);
                 memoriaRam.setFkComponenteRAM(idComponenteRAM);
-                getfkMaquina();
+                getfkMaquina(hostname);
             } catch (EmptyResultDataAccessException e){
                 System.out.println("Nenhum resultado encontrado na RAM!");
             }
@@ -32,16 +32,16 @@ public class MemoriaRamDao {
         }
     }
 
-    public void getfkMaquina(){
-        String sql = "SELECT idMaquina FROM Maquina";
+    public void getfkMaquina(String hostname){
+        String sql = "SELECT idMaquina FROM Maquina WHERE hostname = ?";
         Integer idMaquina = null;
 
         try {
-            idMaquina = conMysql.queryForObject(sql, Integer.class);
+            idMaquina = conMysql.queryForObject(sql, Integer.class, hostname);
             memoriaRam.setFkMaquina(idMaquina);
 
             try {
-                idMaquina = conSqlServer.queryForObject(sql, Integer.class);
+                idMaquina = conSqlServer.queryForObject(sql, Integer.class, hostname);
                 memoriaRam.setFkMaquinaSqlServer(idMaquina);
                 salvarDadosRam();
             } catch (EmptyResultDataAccessException e){

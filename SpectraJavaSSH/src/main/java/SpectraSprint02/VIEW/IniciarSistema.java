@@ -121,11 +121,11 @@ Acesse a dashboard para visualizar: http://34.234.237.115:3333
         TimerTask tarefa = new TimerTask() {
             @Override
             public void run() {
-                cpuDao.getFkComponenteCPU();
-                memoriaRamDao.getFkComponenteRAM();
-                discoDao.getFkComponenteDisco();
-                redeDao.getFkComponenteRede();
-                processoDao.getfkMaquina();
+                cpuDao.getFkComponenteCPU(maquina.getHostName());
+                memoriaRamDao.getFkComponenteRAM(maquina.getHostName());
+                discoDao.getFkComponenteDisco(maquina.getHostName());
+                redeDao.getFkComponenteRede(maquina.getHostName());
+                processoDao.getfkMaquina(maquina.getHostName());
                 System.out.println("""
                         Dados inseridos!!
                         """);

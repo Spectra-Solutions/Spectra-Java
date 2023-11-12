@@ -10,7 +10,7 @@ public class RedeDao {
     JdbcTemplate conSqlServer = conexao.getConexaoDoBancoSQLServer();
     Rede rede = new Rede();
 
-    public void getFkComponenteRede(){
+    public void getFkComponenteRede(String hostname){
         String sql = "SELECT idComponente FROM Componente WHERE idComponente = 4";
         Integer idComponenteRede = null;
 
@@ -21,7 +21,7 @@ public class RedeDao {
             try{
                 idComponenteRede = conSqlServer.queryForObject(sql, Integer.class);
                 rede.setFkComponenteRede(idComponenteRede);
-                getfkMaquina();
+                getfkMaquina(hostname);
             } catch (EmptyResultDataAccessException e){
                 System.out.println("Nenhum resultado encontrado na Rede!");
             }
@@ -31,16 +31,16 @@ public class RedeDao {
         }
     }
 
-    public void getfkMaquina(){
-        String sql = "SELECT idMaquina FROM Maquina";
+    public void getfkMaquina(String hostname){
+        String sql = "SELECT idMaquina FROM Maquina WHERE hostname = ?";
         Integer idMaquina = null;
 
         try {
-            idMaquina = conMysql.queryForObject(sql, Integer.class);
+            idMaquina = conMysql.queryForObject(sql, Integer.class, hostname);
             rede.setFkMaquina(idMaquina);
 
             try {
-                idMaquina = conSqlServer.queryForObject(sql, Integer.class);
+                idMaquina = conSqlServer.queryForObject(sql, Integer.class, hostname);
                 rede.setFkMaquinaSqlServer(idMaquina);
                 salvarDadosRede();
             } catch (EmptyResultDataAccessException e){

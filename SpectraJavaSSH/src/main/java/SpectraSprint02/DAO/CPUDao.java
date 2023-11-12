@@ -1,6 +1,7 @@
 package SpectraSprint02.DAO;
 
 import SpectraSprint02.DTO.CPU;
+import SpectraSprint02.DTO.Maquina;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -10,7 +11,7 @@ public class CPUDao {
     JdbcTemplate conSqlServer = conexao.getConexaoDoBancoSQLServer();
     CPU cpu = new CPU();
 
-    public void getFkComponenteCPU(){
+    public void getFkComponenteCPU(String hostname){
         String sql = "SELECT idComponente FROM Componente WHERE idComponente = 1";
 
         Integer idComponenteCpu = null;
@@ -22,7 +23,8 @@ public class CPUDao {
             try{
                 idComponenteCpu = conSqlServer.queryForObject(sql, Integer.class);
                 cpu.setFkComponenteCPU(idComponenteCpu);
-                getfkMaquina();
+
+                getfkMaquina(hostname);
             } catch (EmptyResultDataAccessException e){
                 System.out.println("Nenhum resultado encontrado na CPU!");
             }
@@ -33,18 +35,19 @@ public class CPUDao {
 
     }
 
-    public void getfkMaquina(){
-        String sql = "SELECT idMaquina FROM Maquina";
+    public void getfkMaquina(String hostname){
+        String sql = "SELECT idMaquina FROM Maquina WHERE hostname = ?";
         Integer idMaquina = null;
 
         try {
-            idMaquina = conMysql.queryForObject(sql, Integer.class);
+            idMaquina = conMysql.queryForObject(sql, Integer.class, hostname);
             cpu.setFkMaquina(idMaquina);
 
             try {
-                idMaquina = conSqlServer.queryForObject(sql, Integer.class);
+                idMaquina = conSqlServer.queryForObject(sql, Integer.class, hostname);
                 cpu.setFkMaquinaSqlServer(idMaquina);
                 salvarDadosCPU();
+
             } catch (EmptyResultDataAccessException e){
                 System.out.println("Nenhum resultado no idMaquina na CPU!");
             }

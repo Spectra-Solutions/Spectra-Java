@@ -16,16 +16,16 @@ public class ProcessoDao {
     Looca looca = new Looca();
     List<Processo> processos = looca.getGrupoDeProcessos().getProcessos();
 
-    public void getfkMaquina(){
-        String sql = "SELECT idMaquina FROM Maquina";
+    public void getfkMaquina(String hostname){
+        String sql = "SELECT idMaquina FROM Maquina WHERE hostname = ?";
         Integer idMaquina = null;
 
         try {
-            idMaquina = conMysql.queryForObject(sql, Integer.class);
+            idMaquina = conMysql.queryForObject(sql, Integer.class, hostname);
             processoClass.setFkMaquinaProcesso(idMaquina);
 
             try {
-                idMaquina = conSqlServer.queryForObject(sql, Integer.class);
+                idMaquina = conSqlServer.queryForObject(sql, Integer.class, hostname);
                 processoClass.setFkMaquinaProcessoSqlServer(idMaquina);
                 salvarDadosProcessos();
             } catch (EmptyResultDataAccessException e){
