@@ -15,6 +15,8 @@
     </properties>
 
     <dependencies>
+
+        <!-- dependências da API LOOCA -->
         <dependency>
             <groupId>com.github.britooo</groupId>
             <artifactId>looca-api</artifactId>
@@ -40,6 +42,20 @@
             <artifactId>mysql-connector-j</artifactId>
             <version>8.1.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.slack.api</groupId>
+            <artifactId>slack-api-client</artifactId>
+            <version>1.35.0</version>
+        </dependency>
+
+        <!-- Driver do servidor de banco SQL SERVER -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>12.4.1.jre11</version>
+        </dependency>
+
     </dependencies>
 
 </project>

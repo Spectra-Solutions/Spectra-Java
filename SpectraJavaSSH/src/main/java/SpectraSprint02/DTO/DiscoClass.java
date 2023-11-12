@@ -12,6 +12,7 @@ public class DiscoClass {
     private Double armazenamentoDisponivel;
     private Integer fkComponenteDisco;
     private Integer fkMaquina;
+    private Integer fkMaquinaSqlServer;
 
     public DiscoClass(Long consumoAtual, Double armazenamentoTotal, Double armazenamentoDisponivel) {
         this.idRegistroDisco = null;
@@ -70,5 +71,13 @@ public class DiscoClass {
 
     public void setFkMaquina(Integer fkMaquina) {
         this.fkMaquina = fkMaquina;
+    }
+
+    public Integer getFkMaquinaSqlServer() {
+        return fkMaquinaSqlServer;
+    }
+
+    public void setFkMaquinaSqlServer(Integer fkMaquinaSqlServer) {
+        this.fkMaquinaSqlServer = fkMaquinaSqlServer;
     }
 }

@@ -10,6 +10,7 @@ public class CPU {
     private Long tempoAtividade;
     private Integer fkComponenteCPU;
     private Integer fkMaquina;
+    private Integer fkMaquinaSqlServer;
     private Looca looca = new Looca();
     private Processador processador = looca.getProcessador();
 
@@ -72,5 +73,13 @@ public class CPU {
 
     public void setFkMaquina(Integer fkMaquina) {
         this.fkMaquina = fkMaquina;
+    }
+
+    public Integer getFkMaquinaSqlServer() {
+        return fkMaquinaSqlServer;
+    }
+
+    public void setFkMaquinaSqlServer(Integer fkMaquinaSqlServer) {
+        this.fkMaquinaSqlServer = fkMaquinaSqlServer;
     }
 }

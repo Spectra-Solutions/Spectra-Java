@@ -10,6 +10,7 @@ public class MemoriaRam {
     private Double armazenamentoDisponivel;
     private Integer fkComponenteRAM;
     private Integer fkMaquina;
+    private Integer fkMaquinaSqlServer;
     private Looca looca = new Looca();
     private Memoria memoriaRam = looca.getMemoria();
     private Integer GB = 1024 * 1024 * 1024;
@@ -74,5 +75,13 @@ public class MemoriaRam {
 
     public void setFkMaquina(Integer fkMaquina) {
         this.fkMaquina = fkMaquina;
+    }
+
+    public Integer getFkMaquinaSqlServer() {
+        return fkMaquinaSqlServer;
+    }
+
+    public void setFkMaquinaSqlServer(Integer fkMaquinaSqlServer) {
+        this.fkMaquinaSqlServer = fkMaquinaSqlServer;
     }
 }
