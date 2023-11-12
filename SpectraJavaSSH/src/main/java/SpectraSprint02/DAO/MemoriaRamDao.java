@@ -6,7 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public class MemoriaRamDao {
     Conexao conexao = new Conexao();
-    JdbcTemplate con = conexao.getConexaoDoBanco();
+    JdbcTemplate conMysql = conexao.getConexaoDoBancoMySQL();
+    JdbcTemplate conSqlServer = conexao.getConexaoDoBancoSQLServer();
     MemoriaRam memoriaRam = new MemoriaRam();
 
     public void getFkComponenteRAM(){
@@ -15,9 +16,17 @@ public class MemoriaRamDao {
         Integer idComponenteRAM = null;
 
         try{
-            idComponenteRAM = con.queryForObject(sql, Integer.class);
+            idComponenteRAM = conMysql.queryForObject(sql, Integer.class);
             memoriaRam.setFkComponenteRAM(idComponenteRAM);
-            getfkMaquina();
+
+            try{
+                idComponenteRAM = conSqlServer.queryForObject(sql, Integer.class);
+                memoriaRam.setFkComponenteRAM(idComponenteRAM);
+                getfkMaquina();
+            } catch (EmptyResultDataAccessException e){
+                System.out.println("Nenhum resultado encontrado na RAM!");
+            }
+
         } catch (EmptyResultDataAccessException e){
             System.out.println("Nenhum resultado encontrado na RAM!");
         }
@@ -28,16 +37,27 @@ public class MemoriaRamDao {
         Integer idMaquina = null;
 
         try {
-            idMaquina = con.queryForObject(sql, Integer.class);
+            idMaquina = conMysql.queryForObject(sql, Integer.class);
             memoriaRam.setFkMaquina(idMaquina);
-            salvarDadosRam();
+
+            try {
+                idMaquina = conSqlServer.queryForObject(sql, Integer.class);
+                memoriaRam.setFkMaquinaSqlServer(idMaquina);
+                salvarDadosRam();
+            } catch (EmptyResultDataAccessException e){
+                System.out.println("Nenhum resultado no idMaquina na ram!");
+            }
+
         } catch (EmptyResultDataAccessException e){
             System.out.println("Nenhum resultado no idMaquina na ram!");
         }
     }
 
     public void salvarDadosRam(){
-        con.update("INSERT INTO RegistroComponente (idRegistroComponente, consumoAtual, armazenamentoTotal, armazenamentoDisponivel, fkComponente, fkMaquina) VALUES (?, ?, ?, ?, ?, ?)",
+        conMysql.update("INSERT INTO RegistroComponente (idRegistroComponente, consumoAtual, armazenamentoTotal, armazenamentoDisponivel, fkComponente, fkMaquina) VALUES (?, ?, ?, ?, ?, ?)",
                 memoriaRam.getIdRegistroMemoriaRAM(), memoriaRam.getConsumoAtual(), memoriaRam.getArmazenamentoTotal(), memoriaRam.getArmazenamentoDisponivel(), memoriaRam.getFkComponenteRAM(), memoriaRam.getFkMaquina());
+
+        conSqlServer.update("INSERT INTO RegistroComponente (consumoAtual, armazenamentoTotal, armazenamentoDisponivel, fkComponente, fkMaquina) VALUES (?, ?, ?, ?, ?)" ,
+                memoriaRam.getConsumoAtual(), memoriaRam.getArmazenamentoTotal(), memoriaRam.getArmazenamentoDisponivel(), memoriaRam.getFkComponenteRAM(), memoriaRam.getFkMaquinaSqlServer());
     }
 }

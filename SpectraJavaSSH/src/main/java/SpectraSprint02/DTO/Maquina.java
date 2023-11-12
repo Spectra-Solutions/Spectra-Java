@@ -15,6 +15,7 @@ public class Maquina {
     private String secao;
     private Integer qtdDisco;
     private Integer fkEmpresa;
+    private Integer fkEmpresaSqlServer;
     private Looca looca = new Looca();
 
     public Maquina(String hostName, String nome, String sistemaOperacional, String secao, Integer qtdDisco) {
@@ -89,5 +90,13 @@ public class Maquina {
 
     public void setFkEmpresa(Integer fkEmpresa) {
         this.fkEmpresa = fkEmpresa;
+    }
+
+    public Integer getFkEmpresaSqlServer() {
+        return fkEmpresaSqlServer;
+    }
+
+    public void setFkEmpresaSqlServer(Integer fkEmpresaSqlServer) {
+        this.fkEmpresaSqlServer = fkEmpresaSqlServer;
     }
 }

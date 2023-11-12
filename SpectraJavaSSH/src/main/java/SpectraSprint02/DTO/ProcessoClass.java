@@ -7,6 +7,7 @@ public class ProcessoClass {
     private Double usoCpu;
     private Double usoMemoria;
     private Integer fkMaquinaProcesso;
+    private Integer fkMaquinaProcessoSqlServer;
 
     public ProcessoClass(Integer pidProcesso, String nomeProcesso, Double usoCpu, Double usoMemoria) {
         this.idProcesso = null;
@@ -65,5 +66,13 @@ public class ProcessoClass {
 
     public void setFkMaquinaProcesso(Integer fkMaquinaProcesso) {
         this.fkMaquinaProcesso = fkMaquinaProcesso;
+    }
+
+    public Integer getFkMaquinaProcessoSqlServer() {
+        return fkMaquinaProcessoSqlServer;
+    }
+
+    public void setFkMaquinaProcessoSqlServer(Integer fkMaquinaProcessoSqlServer) {
+        this.fkMaquinaProcessoSqlServer = fkMaquinaProcessoSqlServer;
     }
 }

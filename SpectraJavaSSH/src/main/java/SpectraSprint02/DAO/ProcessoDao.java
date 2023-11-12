@@ -10,7 +10,8 @@ import java.util.List;
 
 public class ProcessoDao {
     Conexao conexao = new Conexao();
-    JdbcTemplate con = conexao.getConexaoDoBanco();
+    JdbcTemplate conMysql = conexao.getConexaoDoBancoMySQL();
+    JdbcTemplate conSqlServer = conexao.getConexaoDoBancoSQLServer();
     ProcessoClass processoClass = new ProcessoClass();
     Looca looca = new Looca();
     List<Processo> processos = looca.getGrupoDeProcessos().getProcessos();
@@ -20,9 +21,17 @@ public class ProcessoDao {
         Integer idMaquina = null;
 
         try {
-            idMaquina = con.queryForObject(sql, Integer.class);
+            idMaquina = conMysql.queryForObject(sql, Integer.class);
             processoClass.setFkMaquinaProcesso(idMaquina);
-            salvarDadosProcessos();
+
+            try {
+                idMaquina = conSqlServer.queryForObject(sql, Integer.class);
+                processoClass.setFkMaquinaProcessoSqlServer(idMaquina);
+                salvarDadosProcessos();
+            } catch (EmptyResultDataAccessException e){
+                System.out.println("Nenhum resultado no idMaquina no processo!");
+            }
+
         } catch (EmptyResultDataAccessException e){
             System.out.println("Nenhum resultado no idMaquina no processo!");
         }
@@ -37,8 +46,11 @@ public class ProcessoDao {
             processoClass.setUsoCpu(processoDaVez.getUsoCpu());
             processoClass.setUsoMemoria(processoDaVez.getUsoMemoria());
 
-            con.update("INSERT INTO Processo (idProcesso, PidProcesso, nomeProcesso, usoCpu, usoMemoria, fkMaquinaProcesso) VALUES (?, ?, ?, ?, ?, ?)",
+            conMysql.update("INSERT INTO Processo (idProcesso, PidProcesso, nomeProcesso, usoCpu, usoMemoria, fkMaquinaProcesso) VALUES (?, ?, ?, ?, ?, ?)",
                     processoClass.getIdProcesso(), processoClass.getPidProcesso(), processoClass.getNomeProcesso(), processoClass.getUsoCpu(), processoClass.getUsoMemoria(), processoClass.getFkMaquinaProcesso());
+
+            conSqlServer.update("INSERT INTO Processo (PidProcesso, nomeProcesso, usoCpu, usoMemoria, fkMaquinaProcesso) VALUES (?, ?, ?, ?, ?)",
+                    processoClass.getPidProcesso(), processoClass.getNomeProcesso(), processoClass.getUsoCpu(), processoClass.getUsoMemoria(), processoClass.getFkMaquinaProcessoSqlServer());
         }
     }
 }

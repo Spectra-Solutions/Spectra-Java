@@ -3,6 +3,7 @@ package JAR.DAO;
 import JAR.DTO.JanelasAbertas;
 import JAR.DTO.Maquina;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
@@ -30,7 +31,6 @@ public class JanelasAbertasDao {
         List<String> janelasProibidas = null;
 
         try {
-            janelasProibidas = con.queryForObject(sql, List.class, idMaquina);
         } catch (EmptyResultDataAccessException e){
             System.out.println("Nenhum resultado encontrado");
         }

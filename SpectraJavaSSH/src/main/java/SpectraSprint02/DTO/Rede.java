@@ -12,6 +12,7 @@ public class Rede {
     private Long consumoDownload;
     private Integer fkComponenteRede;
     private Integer fkMaquina;
+    private Integer fkMaquinaSqlServer;
     private Looca looca = new Looca();
     private List<RedeInterface> redeInterfaces = looca.getRede().getGrupoDeInterfaces().getInterfaces();
 
@@ -78,5 +79,13 @@ public class Rede {
 
     public void setFkMaquina(Integer fkMaquina) {
         this.fkMaquina = fkMaquina;
+    }
+
+    public Integer getFkMaquinaSqlServer() {
+        return fkMaquinaSqlServer;
+    }
+
+    public void setFkMaquinaSqlServer(Integer fkMaquinaSqlServer) {
+        this.fkMaquinaSqlServer = fkMaquinaSqlServer;
     }
 }

@@ -6,7 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public class CPUDao {
     Conexao conexao = new Conexao();
-    JdbcTemplate con = conexao.getConexaoDoBanco();
+    JdbcTemplate conMysql = conexao.getConexaoDoBancoMySQL();
+    JdbcTemplate conSqlServer = conexao.getConexaoDoBancoSQLServer();
     CPU cpu = new CPU();
 
     public void getFkComponenteCPU(){
@@ -15,12 +16,21 @@ public class CPUDao {
         Integer idComponenteCpu = null;
 
         try{
-            idComponenteCpu = con.queryForObject(sql, Integer.class);
+            idComponenteCpu = conMysql.queryForObject(sql, Integer.class);
             cpu.setFkComponenteCPU(idComponenteCpu);
-            getfkMaquina();
+
+            try{
+                idComponenteCpu = conSqlServer.queryForObject(sql, Integer.class);
+                cpu.setFkComponenteCPU(idComponenteCpu);
+                getfkMaquina();
+            } catch (EmptyResultDataAccessException e){
+                System.out.println("Nenhum resultado encontrado na CPU!");
+            }
+
         } catch (EmptyResultDataAccessException e){
             System.out.println("Nenhum resultado encontrado na CPU!");
         }
+
     }
 
     public void getfkMaquina(){
@@ -28,16 +38,27 @@ public class CPUDao {
         Integer idMaquina = null;
 
         try {
-            idMaquina = con.queryForObject(sql, Integer.class);
+            idMaquina = conMysql.queryForObject(sql, Integer.class);
             cpu.setFkMaquina(idMaquina);
-            salvarDadosCPU();
+
+            try {
+                idMaquina = conSqlServer.queryForObject(sql, Integer.class);
+                cpu.setFkMaquinaSqlServer(idMaquina);
+                salvarDadosCPU();
+            } catch (EmptyResultDataAccessException e){
+                System.out.println("Nenhum resultado no idMaquina na CPU!");
+            }
+
         } catch (EmptyResultDataAccessException e){
             System.out.println("Nenhum resultado no idMaquina na CPU!");
         }
     }
 
     public void salvarDadosCPU(){
-        con.update("INSERT INTO RegistroComponente (idRegistroComponente, especificacao, consumoAtual, fkComponente, fkMaquina) VALUES (?, ?, ?, ?, ?)",
+        conMysql.update("INSERT INTO RegistroComponente (idRegistroComponente, especificacao, consumoAtual, fkComponente, fkMaquina) VALUES (?, ?, ?, ?, ?)",
                 cpu.getIdRegistroCPU(), cpu.getEspecificacao(), cpu.getConsumoAtual(), cpu.getFkComponenteCPU(), cpu.getFkMaquina());
+
+        conSqlServer.update("INSERT INTO RegistroComponente (especificacao, consumoAtual, fkComponente, fkMaquina) VALUES (?, ?, ?, ?)",
+                cpu.getEspecificacao(), cpu.getConsumoAtual(), cpu.getFkComponenteCPU(), cpu.getFkMaquinaSqlServer());
     }
 }

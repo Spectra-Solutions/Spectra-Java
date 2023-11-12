@@ -6,7 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public class RedeDao {
     Conexao conexao = new Conexao();
-    JdbcTemplate con = conexao.getConexaoDoBanco();
+    JdbcTemplate conMysql = conexao.getConexaoDoBancoMySQL();
+    JdbcTemplate conSqlServer = conexao.getConexaoDoBancoSQLServer();
     Rede rede = new Rede();
 
     public void getFkComponenteRede(){
@@ -14,9 +15,17 @@ public class RedeDao {
         Integer idComponenteRede = null;
 
         try{
-            idComponenteRede = con.queryForObject(sql, Integer.class);
+            idComponenteRede = conMysql.queryForObject(sql, Integer.class);
             rede.setFkComponenteRede(idComponenteRede);
-            getfkMaquina();
+
+            try{
+                idComponenteRede = conSqlServer.queryForObject(sql, Integer.class);
+                rede.setFkComponenteRede(idComponenteRede);
+                getfkMaquina();
+            } catch (EmptyResultDataAccessException e){
+                System.out.println("Nenhum resultado encontrado na Rede!");
+            }
+
         } catch (EmptyResultDataAccessException e){
             System.out.println("Nenhum resultado encontrado na Rede!");
         }
@@ -27,16 +36,27 @@ public class RedeDao {
         Integer idMaquina = null;
 
         try {
-            idMaquina = con.queryForObject(sql, Integer.class);
+            idMaquina = conMysql.queryForObject(sql, Integer.class);
             rede.setFkMaquina(idMaquina);
-            salvarDadosRede();
+
+            try {
+                idMaquina = conSqlServer.queryForObject(sql, Integer.class);
+                rede.setFkMaquinaSqlServer(idMaquina);
+                salvarDadosRede();
+            } catch (EmptyResultDataAccessException e){
+                System.out.println("Nenhum resultado no idMaquina na rede!");
+            }
+
         } catch (EmptyResultDataAccessException e){
             System.out.println("Nenhum resultado no idMaquina na rede!");
         }
     }
 
     public void salvarDadosRede(){
-        con.update("INSERT INTO RegistroComponente (idRegistroComponente, consumoUpload, consumoDownload, fkComponente, fkMaquina) VALUES (?, ?, ?, ?, ?)",
+        conMysql.update("INSERT INTO RegistroComponente (idRegistroComponente, consumoUpload, consumoDownload, fkComponente, fkMaquina) VALUES (?, ?, ?, ?, ?)",
                 rede.getIdRegistroRede(), rede.getConsumoUpload(), rede.getConsumoDownload(), rede.getFkComponenteRede(), rede.getFkMaquina());
+
+        conSqlServer.update("INSERT INTO RegistroComponente (consumoUpload, consumoDownload, fkComponente, fkMaquina) VALUES (?, ?, ?, ?)",
+                rede.getConsumoUpload(), rede.getConsumoDownload(), rede.getFkComponenteRede(), rede.getFkMaquinaSqlServer());
     }
 }

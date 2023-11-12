@@ -10,7 +10,8 @@ import java.util.List;
 
 public class DiscoDao {
     Conexao conexao = new Conexao();
-    JdbcTemplate con = conexao.getConexaoDoBanco();
+    JdbcTemplate conMysql = conexao.getConexaoDoBancoMySQL();
+    JdbcTemplate conSqlServer = conexao.getConexaoDoBancoSQLServer();
     DiscoClass disco = new DiscoClass();
     Looca looca = new Looca();
     List<Volume> volumes = looca.getGrupoDeDiscos().getVolumes();
@@ -22,9 +23,17 @@ public class DiscoDao {
         Integer idComponenteDisco = null;
 
         try{
-            idComponenteDisco = con.queryForObject(sql, Integer.class);
+            idComponenteDisco = conMysql.queryForObject(sql, Integer.class);
             disco.setFkComponenteDisco(idComponenteDisco);
-            getfkMaquina();
+
+            try{
+                idComponenteDisco = conSqlServer.queryForObject(sql, Integer.class);
+                disco.setFkComponenteDisco(idComponenteDisco);
+                getfkMaquina();
+            } catch (EmptyResultDataAccessException e){
+                System.out.println("Nenhum resultado encontrado no Disco!");
+            }
+
         } catch (EmptyResultDataAccessException e){
             System.out.println("Nenhum resultado encontrado no Disco!");
         }
@@ -35,9 +44,17 @@ public class DiscoDao {
         Integer idMaquina = null;
 
         try {
-            idMaquina = con.queryForObject(sql, Integer.class);
+            idMaquina = conMysql.queryForObject(sql, Integer.class);
             disco.setFkMaquina(idMaquina);
-            salvarDadosDisco();
+
+            try {
+                idMaquina = conSqlServer.queryForObject(sql, Integer.class);
+                disco.setFkMaquinaSqlServer(idMaquina);
+                salvarDadosDisco();
+            } catch (EmptyResultDataAccessException e){
+                System.out.println("Nenhum resultado no idMaquina na ram!");
+            }
+
         } catch (EmptyResultDataAccessException e){
             System.out.println("Nenhum resultado no idMaquina na ram!");
         }
@@ -51,8 +68,11 @@ public class DiscoDao {
             disco.setArmazenamentoTotal((double) (volumeDaVez.getTotal() / GB));
             disco.setArmazenamentoDisponivel((double) (volumeDaVez.getDisponivel() / GB));
 
-            con.update("INSERT INTO RegistroComponente (idRegistroComponente, consumoAtual, armazenamentoTotal, armazenamentoDisponivel, fkComponente, fkMaquina) VALUES (?, ?, ?, ?, ?, ?)",
+            conMysql.update("INSERT INTO RegistroComponente (idRegistroComponente, consumoAtual, armazenamentoTotal, armazenamentoDisponivel, fkComponente, fkMaquina) VALUES (?, ?, ?, ?, ?, ?)",
                     disco.getIdRegistroDisco(), disco.getConsumoAtual(), disco.getArmazenamentoTotal(), disco.getArmazenamentoDisponivel(), disco.getFkComponenteDisco(), disco.getFkMaquina());
+
+            conSqlServer.update("INSERT INTO RegistroComponente (consumoAtual, armazenamentoTotal, armazenamentoDisponivel, fkComponente, fkMaquina) VALUES (?, ?, ?, ?, ?)",
+                    disco.getConsumoAtual(), disco.getArmazenamentoTotal(), disco.getArmazenamentoDisponivel(), disco.getFkComponenteDisco(), disco.getFkMaquinaSqlServer());
         }
     }
 }

@@ -44,9 +44,7 @@ public class JanelasAbertas {
                             Nome: %s""".formatted(janelaDaVez));
                     janelasAbertasDao.registrarInfracao(fkMaquina, janelaDaVez);
                 }
-
             }
-
         }
     }
 

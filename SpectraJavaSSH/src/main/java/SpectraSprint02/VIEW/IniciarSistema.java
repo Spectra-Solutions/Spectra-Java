@@ -27,10 +27,21 @@ public class IniciarSistema {
         Integer comprimentoMinino = 8;
 
         System.out.println("""
-                  Bem vindo ao Sistema de monitoramento Spectra!
-                
-              Para iniciar o monitoramento, insira suas credenciais!
-              """);
+Bem vindo ao Sistema de monitoramento Spectra!
+                    
+"  ad88888ba                                                                               "
+" d8       8b                                           ,d                                 "
+" Y8,                                                   88                                 "
+" `Y8aaaaa,    8b,dPPYba,    ,adPPYba,    ,adPPYba,     MM88MMM    8b,dPPYba,  ,adPPYYba,  "
+"  `     8b,   88P'     8a   a8P_____88   a8       a    88         88P'    Y8         `Y8  "
+"        `8b   88       d8   8PP         8b             88         88          ,adPPPPP88  "
+" Y8a     a8P  88b,   ,a8    8b,   ,aa   8a,     ,a     88,        88          88,    ,88  "
+"  Y88888P     88`YbbdP '    ` Ybbd8 '    `iYbbd8i      'Y888      88          `88bbdPiY8  "
+"              88                                                                          "
+"              88                                                                          "
+                  
+Para iniciar o monitoramento, insira suas credenciais!
+""");
 
 
         System.out.println("""
@@ -51,12 +62,12 @@ public class IniciarSistema {
         {
             if (emailDigitado.indexOf("@") >= 0 && emailDigitado.indexOf(".") >= 0 && senhaDigitada.length() >= comprimentoMinino) {
 
-                if (validarFuncionario.existEmail(func.getEmail(), func.getSenha())) {
+                if (validarFuncionario.existEmail(func.getEmail(), func.getSenha()) && validarFuncionario.existEmailSqlServer(func.getEmail(), func.getSenha())) {
                     System.out.println("""
-                            Usuario logado com sucesso!
+Usuario logado com sucesso!
                             
-                           O monitoramento ja foi iniciado!
-                Acesse a dashboard para visualizar: http://34.234.237.115:3333
+O monitoramento ja foi iniciado!
+Acesse a dashboard para visualizar: http://34.234.237.115:3333
                             """);
                     validarMaquina();
                 } else {
@@ -73,13 +84,13 @@ public class IniciarSistema {
     public void validarMaquina(){
         String nomeDigitado, secaoDigitada;
 
-        if (maquinaDao.existHostName(maquina.getHostName())){
+        if (maquinaDao.existHostName(maquina.getHostName()) && maquinaDao.existHostNameSqlServer(maquina.getHostName())){
             System.out.println("Maquina ja cadastrada no sistema!");
             capturarDados();
         } else {
 
             System.out.println("""
-                                  Maquina ainda não cadastrada!
+Maquina ainda não cadastrada!
                    """);
 
             System.out.println("Digite o nome que você quer atribuir a maquina:");
@@ -94,10 +105,10 @@ public class IniciarSistema {
             maquinaDao.getFkEmpresa(maquina.getNome(), maquina.getSecao(),func.getEmail(), func.getSenha());
 
             System.out.println("""
-                                  Maquina cadastrada!
+Maquina cadastrada!
                             
-                           O monitoramento ja foi iniciado!
-                Acesse a dashboard para visualizar: http://34.234.237.115:3333
+O monitoramento ja foi iniciado!
+Acesse a dashboard para visualizar: http://34.234.237.115:3333
                    """);
 
             capturarDados();
@@ -115,6 +126,9 @@ public class IniciarSistema {
                 discoDao.getFkComponenteDisco();
                 redeDao.getFkComponenteRede();
                 processoDao.getfkMaquina();
+                System.out.println("""
+                        Dados inseridos!!
+                        """);
             }
         };
 
