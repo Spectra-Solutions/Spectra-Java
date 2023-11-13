@@ -23,7 +23,7 @@
             <version>2.2.0</version>
         </dependency>
 
-        <!-- dependências do spring jdbc -->
+        <!-- Dependências do spring jdbc -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
@@ -43,17 +43,18 @@
             <version>8.1.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.slack.api</groupId>
-            <artifactId>slack-api-client</artifactId>
-            <version>1.35.0</version>
-        </dependency>
-
         <!-- Driver do servidor de banco SQL SERVER -->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
             <version>12.4.1.jre11</version>
+        </dependency>
+
+        <!-- Diver de instalação Slack-->
+        <dependency>
+            <groupId>com.slack.api</groupId>
+            <artifactId>slack-api-client</artifactId>
+            <version>1.35.0</version>
         </dependency>
 
     </dependencies>
