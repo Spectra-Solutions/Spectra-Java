@@ -1,3 +1,4 @@
+/*
 package ApiLooca;
 
 import com.github.britooo.looca.api.core.Looca;
@@ -161,4 +162,4 @@ public class ApiLooca {
 //        System.out.println(processoGrupo.getTotalProcessos());
 //        System.out.println(processoGrupo.getTotalThreads());
     }
-}
+}*/

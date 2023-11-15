@@ -1,3 +1,4 @@
+/*
 package SpectraSprint02.SLACK;
 
 import com.slack.api.Slack;
@@ -10,5 +11,7 @@ public class Example {
         ApiTestResponse response = slack.methods().apiTest(r -> r.foo("Bar"));
 
         System.out.println(response);
+
     }
 }
+*/
