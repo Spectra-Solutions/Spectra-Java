@@ -1,6 +1,6 @@
 package Spectra.VIEW;
 
-public class Teste {
+public class SistemaSpectra {
     public static void main(String[] args) {
         IniciarSistema novoSistema = new IniciarSistema();
 
