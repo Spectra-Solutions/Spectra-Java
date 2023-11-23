@@ -50,6 +50,29 @@
             <artifactId>mysql-connector-j</artifactId>
             <version>8.2.0</version>
         </dependency>
+
+    <!--=======================================================================================================================-->
+
+        <!-- Driver do Slack-->
+        <dependency>
+            <groupId>com.slack.api</groupId>
+            <artifactId>slack-api-client</artifactId>
+            <version>1.36.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20201115</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.slack.api/bolt -->
+        <dependency>
+            <groupId>com.slack.api</groupId>
+            <artifactId>bolt-jetty</artifactId>
+            <version>1.30.0</version>
+        </dependency>
+
     </dependencies>
 
     <!--=======================================================================================================================-->

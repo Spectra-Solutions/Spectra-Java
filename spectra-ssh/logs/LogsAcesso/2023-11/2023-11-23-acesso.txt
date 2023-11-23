@@ -1,0 +1,4 @@
+[2023-11-23 19:13:01] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-23 19:13:01] - O murilo@spectra.com está cadastrando uma nova máquina...
+
