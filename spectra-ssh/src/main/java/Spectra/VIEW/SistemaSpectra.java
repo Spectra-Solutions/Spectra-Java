@@ -1,8 +1,5 @@
 package Spectra.VIEW;
 
-import com.slack.api.model.admin.AppConfig;
-import org.json.JSONObject;
-
 import java.io.IOException;
 
 public class SistemaSpectra {

@@ -24,10 +24,12 @@ public class InovacaoDao {
                 FROM Maquina
                     JOIN COMANDO 
                         ON Maquina.idMaquina = Comando.fkMaquina
-                            """;
+                            WHERE hostName = ?""";
 
         try {
-            Map<String, Object> resultadoMap = conMySQl.queryForMap(sql);
+
+
+            Map<String, Object> resultadoMap = conMySQl.queryForMap(sql, maquina.getHostName());
 
                 Integer idComando = (Integer) resultadoMap.get("idComando");
 

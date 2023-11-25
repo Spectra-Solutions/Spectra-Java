@@ -16,6 +16,7 @@ public class IniciarSistema {
     FuncionarioDao validarFuncionario = new FuncionarioDao();
     Maquina maqui = new Maquina();
     MaquinaDao validarMaquina = new MaquinaDao();
+    SlackDao slackDao = new SlackDao();
     CpuDao cpuDao = new CpuDao();
     MemoriaRamDao memoriaRamDao = new MemoriaRamDao();
     DiscoDao discoDao = new DiscoDao();
@@ -67,6 +68,9 @@ public class IniciarSistema {
                         System.out.println("""
                                 Usuario logado com sucesso
                                 """);
+
+                        slackDao.getUrlEmpresa(func.getEmail(), func.getSenha());
+
                         validarMaquina();
                     } else {
                         log.setMensagem(String.format("""
@@ -113,7 +117,9 @@ public class IniciarSistema {
 
             System.out.println("""
                     Esta máquina já está registrada em nosso sistema.
+                    
                     O monitoramento ja foi iniciado!
+                    
                     Acesse a dashboard para visualizar: http://34.234.237.115:3333""");
             capturarDados();
         }
@@ -148,6 +154,12 @@ public class IniciarSistema {
             @Override
             public void run() {
                 try {
+                    validarMaquina.atualizarTempoAtividade();
+                } catch (IOException e){
+                    throw new RuntimeException(e);
+                }
+
+                try {
                     cpuDao.getFkMaquina(maqui.getHostName());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -174,6 +186,24 @@ public class IniciarSistema {
                 try {
                     processoDao.getFkMaquina(maqui.getHostName());
                 } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                try {
+                    slackDao.getSelectCpu();
+                } catch (IOException e){
+                    throw new RuntimeException(e);
+                }
+
+                try {
+                    slackDao.getSelectRam();
+                } catch (IOException e){
+                    throw new RuntimeException(e);
+                }
+
+                try {
+                    slackDao.getSelectDisco();
+                } catch (IOException e){
                     throw new RuntimeException(e);
                 }
 
