@@ -38,9 +38,6 @@ public class SlackDao {
 
 
     public void getSelectCpu() throws IOException {
-
-        String registroAvisos ="";
-
         String sql = """
                 SELECT RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
                 	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
