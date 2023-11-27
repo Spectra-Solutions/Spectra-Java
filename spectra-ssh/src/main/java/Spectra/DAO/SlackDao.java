@@ -88,7 +88,7 @@ public class SlackDao {
 
                 } catch (EmptyResultDataAccessException e){
                     log.setMensagem(String.format("Não existe select na tabela registro avisos, cpu %s", e));
-                    log.gerarLog("error");
+                    log.gerarLog("erro");
 
                     System.err.println("Não existe select na tabela registro avisos, cpu");
                 }
@@ -96,7 +96,7 @@ public class SlackDao {
 
         } catch (EmptyResultDataAccessException e){
             log.setMensagem(String.format("Não existe select na tabela registro avisos, cpu %s", e));
-            log.gerarLog("error");
+            log.gerarLog("erro");
 
             System.err.println("Não existe select na tabela registro avisos, cpu");
         } catch (InterruptedException e) {
@@ -156,7 +156,7 @@ public class SlackDao {
 
                 } catch (EmptyResultDataAccessException e){
                     log.setMensagem(String.format("Não existe select na tabela registro avisos, ram %s", e));
-                    log.gerarLog("error");
+                    log.gerarLog("erro");
 
                     System.err.println("Não existe select na tabela registro avisos, ram ");
                 }
@@ -164,7 +164,7 @@ public class SlackDao {
 
         } catch (EmptyResultDataAccessException e){
             log.setMensagem(String.format("Não existe select na tabela registro avisos, ram %s", e));
-            log.gerarLog("error");
+            log.gerarLog("erro");
 
             System.err.println("Não existe select na tabela registro avisos, ram");
         } catch (InterruptedException e) {
@@ -225,7 +225,7 @@ public class SlackDao {
 
                 } catch (EmptyResultDataAccessException e){
                     log.setMensagem(String.format("Não existe select na tabela registro avisos, disco %s", e));
-                    log.gerarLog("error");
+                    log.gerarLog("erro");
 
                     System.err.println("Não existe select na tabela registro avisos, disco");
                 }
@@ -233,7 +233,7 @@ public class SlackDao {
 
         } catch (EmptyResultDataAccessException e){
             log.setMensagem(String.format("Não existe select na tabela registro avisos, disco %s", e));
-            log.gerarLog("error");
+            log.gerarLog("erro");
 
             System.err.println("Não existe select na tabela registro avisos, disco ");
         } catch (InterruptedException e) {
