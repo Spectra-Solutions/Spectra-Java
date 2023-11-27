@@ -22,7 +22,7 @@ public class InovacaoDao {
         String sql = """
             SELECT Maquina.hostName, Comando.idComando, Comando.nomeComando, Comando.stattus
                 FROM Maquina
-                    JOIN COMANDO 
+                    JOIN Comando 
                         ON Maquina.idMaquina = Comando.fkMaquina
                             WHERE hostName = ?""";
 
@@ -44,7 +44,7 @@ public class InovacaoDao {
                         conMySQl.update("UPDATE Comando SET stattus = 0 WHERE idComando = ?", idComando);
 
                         if (hostName.equalsIgnoreCase(maquina.getHostName())) {
-                            if (maquina.getSistemaOperacional().equalsIgnoreCase("Linux")) {
+                            if (maquina.getSistemaOperacional().equalsIgnoreCase("Linux") && maquina.getSistemaOperacional().equalsIgnoreCase("Ubuntu")) {
 
                                 if (nomeComando.equalsIgnoreCase("sudo shutdown -h now")) {
                                     log.setMensagem(String.format("""

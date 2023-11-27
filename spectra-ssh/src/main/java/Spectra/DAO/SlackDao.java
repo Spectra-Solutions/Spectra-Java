@@ -36,15 +36,19 @@ public class SlackDao {
         }
     }
 
+
     public void getSelectCpu() throws IOException {
+
+        String registroAvisos ="";
+
         String sql = """
-                SELECT registroAvisos.registroAviso, registroAvisos.fkComponente, registroAvisos.fkTaxaAviso, registroAvisos.fkTipoAviso FROM Componente
-                	JOIN registroAvisos ON registroAvisos.fkComponente = Componente.idComponente
-                		JOIN registroComponente ON registroComponente.fkComponente = Componente.idComponente
-                			JOIN Maquina ON registroComponente.fkMaquina = Maquina.idMaquina
+                SELECT RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
+                	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
+                		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
+                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
                 				WHERE Maquina.hostName = ?
-                					AND registroAvisos.fkComponente = 1
-                						AND registroAvisos.fkTipoAviso = 1
+                					AND RegistroAvisos.fkComponente = 1
+                						AND RegistroAvisos.fkTipoAviso = 1
                 							LIMIT 1""";
         try{
             Map<String, Object> resultadoMap = conMySQl.queryForMap(sql, maquina.getHostName());
@@ -62,13 +66,13 @@ public class SlackDao {
                 slack.sendMenssage(json);
             } else {
                 String sql1 = """
-                SELECT registroAvisos.registroAviso, registroAvisos.fkComponente, registroAvisos.fkTaxaAviso, registroAvisos.fkTipoAviso FROM Componente
-                	JOIN registroAvisos ON registroAvisos.fkComponente = Componente.idComponente
-                		JOIN registroComponente ON registroComponente.fkComponente = Componente.idComponente
-                			JOIN Maquina ON registroComponente.fkMaquina = Maquina.idMaquina
+                SELECT RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
+                	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
+                		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
+                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
                 				WHERE Maquina.hostName = ?
-                					AND registroAvisos.fkComponente = 1
-                						AND registroAvisos.fkTipoAviso = 2
+                					AND RegistroAvisos.fkComponente = 1
+                						AND RegistroAvisos.fkTipoAviso = 2
                 							LIMIT 1""";
 
                 try {
@@ -106,13 +110,13 @@ public class SlackDao {
 
     public void getSelectRam() throws IOException {
         String sql = """
-                SELECT registroAvisos.registroAviso, registroAvisos.fkComponente, registroAvisos.fkTaxaAviso, registroAvisos.fkTipoAviso FROM Componente
-                	JOIN registroAvisos ON registroAvisos.fkComponente = Componente.idComponente
-                		JOIN registroComponente ON registroComponente.fkComponente = Componente.idComponente
-                			JOIN Maquina ON registroComponente.fkMaquina = Maquina.idMaquina
+                SELECT RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
+                	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
+                		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
+                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
                 				WHERE Maquina.hostName = ?
-                					AND registroAvisos.fkComponente = 2
-                						AND registroAvisos.fkTipoAviso = 1
+                					AND RegistroAvisos.fkComponente = 2
+                						AND RegistroAvisos.fkTipoAviso = 1
                 							LIMIT 1""";
         try{
             Map<String, Object> resultadoMap = conMySQl.queryForMap(sql, maquina.getHostName());
@@ -130,13 +134,13 @@ public class SlackDao {
                 slack.sendMenssage(json);
             } else {
                 String sql1 = """
-                SELECT registroAvisos.registroAviso, registroAvisos.fkComponente, registroAvisos.fkTaxaAviso, registroAvisos.fkTipoAviso FROM Componente
-                	JOIN registroAvisos ON registroAvisos.fkComponente = Componente.idComponente
-                		JOIN registroComponente ON registroComponente.fkComponente = Componente.idComponente
-                			JOIN Maquina ON registroComponente.fkMaquina = Maquina.idMaquina
+                SELECT RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
+                	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
+                		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
+                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
                 				WHERE Maquina.hostName = ?
-                					AND registroAvisos.fkComponente = 2
-                						AND registroAvisos.fkTipoAviso = 2
+                					AND RegistroAvisos.fkComponente = 2
+                						AND RegistroAvisos.fkTipoAviso = 2
                 							LIMIT 1""";
 
                 try {
@@ -174,13 +178,13 @@ public class SlackDao {
 
     public void getSelectDisco() throws IOException {
         String sql = """
-                SELECT registroAvisos.registroAviso, registroAvisos.fkComponente, registroAvisos.fkTaxaAviso, registroAvisos.fkTipoAviso FROM Componente
-                	JOIN registroAvisos ON registroAvisos.fkComponente = Componente.idComponente
-                		JOIN registroComponente ON registroComponente.fkComponente = Componente.idComponente
-                			JOIN Maquina ON registroComponente.fkMaquina = Maquina.idMaquina
+                SELECT RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
+                	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
+                		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
+                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
                 				WHERE Maquina.hostName = ?
-                					AND registroAvisos.fkComponente = 3
-                						AND registroAvisos.fkTipoAviso = 1
+                					AND RegistroAvisos.fkComponente = 3
+                						AND RegistroAvisos.fkTipoAviso = 1
                 							LIMIT 1""";
         try{
             Map<String, Object> resultadoMap = conMySQl.queryForMap(sql, maquina.getHostName());
@@ -199,13 +203,13 @@ public class SlackDao {
 
             } else {
                 String sql1 = """
-                SELECT registroAvisos.registroAviso, registroAvisos.fkComponente, registroAvisos.fkTaxaAviso, registroAvisos.fkTipoAviso FROM Componente
-                	JOIN registroAvisos ON registroAvisos.fkComponente = Componente.idComponente
-                		JOIN registroComponente ON registroComponente.fkComponente = Componente.idComponente
-                			JOIN Maquina ON registroComponente.fkMaquina = Maquina.idMaquina
+                SELECT RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
+                	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
+                		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
+                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
                 				WHERE Maquina.hostName = ?
-                					AND registroAvisos.fkComponente = 3
-                						AND registroAvisos.fkTipoAviso = 2
+                					AND RegistroAvisos.fkComponente = 3
+                						AND RegistroAvisos.fkTipoAviso = 2
                 							LIMIT 1""";
 
                 try {
