@@ -241,4 +241,18 @@ public class SlackDao {
             throw new RuntimeException(e);
         }
     }
+
+    public void desligarMaquina(String hostName) throws IOException, InterruptedException {
+        slack.setNotificaçãoSlack(String.format("A maquina %s, foi desligada", hostName));
+        JSONObject json = new JSONObject();
+        json.put("text", slack.getNotificaçãoSlack());
+        slack.sendMenssage(json);
+    }
+
+    public void reiniciarMaquina(String hostName) throws IOException, InterruptedException {
+        slack.setNotificaçãoSlack(String.format("A maquina %s, foi reiniciada", hostName));
+        JSONObject json = new JSONObject();
+        json.put("text", slack.getNotificaçãoSlack());
+        slack.sendMenssage(json);
+    }
 }

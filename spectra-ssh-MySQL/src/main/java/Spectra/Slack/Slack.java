@@ -10,7 +10,7 @@ import java.net.http.HttpResponse;
 
 public class Slack {
     private static HttpClient client = HttpClient.newHttpClient();
-    private String url = "";
+    private static String url = "";
     private String notificaçãoSlack = "";
     private Integer fkComponente;
     private Integer fkTaxaAviso;

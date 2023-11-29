@@ -78,16 +78,24 @@ public class Log {
 
         // Escolhe o diretório específico com base no tipo de log
         switch (tipoLog.toLowerCase()) {
-            case "acesso" -> {
+            case "Acesso" -> {
                 caminhoEspecifico = criarDiretorioEspecifico("LogsAcesso");
             }
 
-            case "erro" -> {
+            case "Erro" -> {
                 caminhoEspecifico = criarDiretorioEspecifico("LogsErro");
             }
 
-                case "inovacao" -> {
+            case "Inovacao" -> {
                 caminhoEspecifico = criarDiretorioEspecifico("LogsInovacao");
+            }
+
+            case "Banco" -> {
+                caminhoEspecifico = criarDiretorioEspecifico("LogsBancoDeDados");
+            }
+
+            case "Slack" -> {
+                caminhoEspecifico = criarDiretorioEspecifico("LogsSlack");
             }
 
             default -> {

@@ -4,13 +4,11 @@ public abstract class Componente {
     protected Integer idRegistro;
     protected Integer fkComponente;
     protected Integer fkMaquina;
-    protected Integer fkMaquinaSQlServer;
 
     public Componente() {
         this.idRegistro = null;
         this.fkComponente = null;
         this.fkMaquina = null;
-        this.fkMaquinaSQlServer = null;
     }
 
     public Integer getIdRegistro() {
@@ -35,14 +33,6 @@ public abstract class Componente {
 
     public void setFkMaquina(Integer fkMaquina) {
         this.fkMaquina = fkMaquina;
-    }
-
-    public Integer getFkMaquinaSQlServer() {
-        return fkMaquinaSQlServer;
-    }
-
-    public void setFkMaquinaSQlServer(Integer fkMaquinaSQlServer) {
-        this.fkMaquinaSQlServer = fkMaquinaSQlServer;
     }
 
     @Override

@@ -1,7 +1,5 @@
 package Spectra.VIEW;
 
-import Spectra.DTO.MemoriaRam;
-
 import java.io.IOException;
 
 public class SistemaSpectra {

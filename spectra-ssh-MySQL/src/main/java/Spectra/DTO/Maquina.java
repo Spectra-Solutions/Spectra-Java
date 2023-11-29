@@ -16,7 +16,6 @@ public class Maquina {
     private Integer fkEmpresa;
     private Integer fkEmpresaSqlServer;
     private Looca looca = new Looca();
-    ConversorSpectra conversorSpectra = new ConversorSpectra();
 
     public Maquina(String hostName, String nome, String sistemaOperacional, String secao, String tempoAtividade,Integer qtdDisco) {
         this.idMaquina = null;
@@ -103,13 +102,5 @@ public class Maquina {
 
     public void setFkEmpresa(Integer fkEmpresa) {
         this.fkEmpresa = fkEmpresa;
-    }
-
-    public Integer getFkEmpresaSqlServer() {
-        return fkEmpresaSqlServer;
-    }
-
-    public void setFkEmpresaSqlServer(Integer fkEmpresaSqlServer) {
-        this.fkEmpresaSqlServer = fkEmpresaSqlServer;
     }
 }

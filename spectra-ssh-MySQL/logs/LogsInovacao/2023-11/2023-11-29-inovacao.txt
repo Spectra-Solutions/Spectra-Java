@@ -1,0 +1,6 @@
+[2023-11-29 00:10:13] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-29 00:10:13] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-29 00:10:13] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-29 00:46:42] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-29 00:59:47] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-29 00:59:47] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0

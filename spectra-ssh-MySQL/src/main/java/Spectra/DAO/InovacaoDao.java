@@ -4,6 +4,8 @@ import Spectra.Connection.ConexaoMysQl;
 import Spectra.DTO.Inovacao;
 import Spectra.DTO.Maquina;
 import Spectra.Log.Log;
+import Spectra.Slack.Slack;
+import org.json.JSONObject;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -12,10 +14,11 @@ import java.util.Map;
 
 public class InovacaoDao {
     Inovacao inovacao = new Inovacao();
+    Maquina maquina = new Maquina();
     Log log = new Log();
+    SlackDao slackDao = new SlackDao();
     ConexaoMysQl conexaoMysQl = new ConexaoMysQl();
     protected JdbcTemplate conMySQl = conexaoMysQl.getConexaoMySQl();
-    Maquina maquina = new Maquina();
 
     public String executarComandoMaquina() throws IOException {
 
@@ -24,18 +27,15 @@ public class InovacaoDao {
                 FROM Maquina
                     JOIN Comando 
                         ON Maquina.idMaquina = Comando.fkMaquina
-                            WHERE hostName = ?""";
+                            WHERE Maquina.hostName = ? 
+                                AND Comando.stattus = 1""";
 
         try {
-
-
             Map<String, Object> resultadoMap = conMySQl.queryForMap(sql, maquina.getHostName());
 
                 Integer idComando = (Integer) resultadoMap.get("idComando");
-
                 String nomeComando = (String) resultadoMap.get("nomeComando");
                 String hostName = (String) resultadoMap.get("hostName");
-
                 Boolean status = (Boolean) resultadoMap.get("stattus");
 
                 if (status){
@@ -47,6 +47,8 @@ public class InovacaoDao {
                             if (maquina.getSistemaOperacional().equalsIgnoreCase("Linux") && maquina.getSistemaOperacional().equalsIgnoreCase("Ubuntu")) {
 
                                 if (nomeComando.equalsIgnoreCase("sudo shutdown -h now")) {
+                                    slackDao.desligarMaquina(maquina.getHostName());
+                                    
                                     log.setMensagem(String.format("""
                                         A maquina %s foi desligada""", maquina.getHostName()));
                                     log.gerarLog("inovacao");
@@ -55,6 +57,8 @@ public class InovacaoDao {
                                 }
 
                                 else if (nomeComando.equalsIgnoreCase("sudo shutdown -r now")) {
+                                    slackDao.reiniciarMaquina(maquina.getHostName());
+
                                     log.setMensagem(String.format("""
                                         A maquina %s foi reiniciada""", maquina.getHostName()));
                                     log.gerarLog("inovacao");
@@ -65,6 +69,8 @@ public class InovacaoDao {
 
                             else if (maquina.getSistemaOperacional().equalsIgnoreCase("Windows")) {
                                 if (nomeComando.equalsIgnoreCase("shutdown /s /f /t 0")) {
+                                    slackDao.desligarMaquina(maquina.getHostName());
+
                                     log.setMensagem(String.format("""
                                         A maquina %s foi desligada""", maquina.getHostName()));
                                     log.gerarLog("inovacao");
@@ -73,6 +79,8 @@ public class InovacaoDao {
                                 }
 
                                 else if (nomeComando.equalsIgnoreCase("shutdown /r /f /t 0")) {
+                                    slackDao.reiniciarMaquina(maquina.getHostName());
+
                                     log.setMensagem(String.format("""
                                         A maquina %s foi reiniciada""", maquina.getHostName()));
                                     log.gerarLog("inovacao");
@@ -89,6 +97,8 @@ public class InovacaoDao {
 
                         System.err.println("Trocar o status do comando deu errado!! %s");
                         return null; // Retorna null em caso de exceção
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
                     }
 
                 }
