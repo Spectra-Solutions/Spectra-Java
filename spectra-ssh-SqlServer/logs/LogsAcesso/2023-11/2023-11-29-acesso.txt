@@ -15,3 +15,32 @@
 [2023-11-29 11:28:04] - O murilo@spectra.com começou o monitoramento da maquina MURILO
 
 [2023-11-29 11:36:46] - O evelyn@sptech.com foi logado com sucesso.
+[2023-11-29 13:10:16] - O murilo@spectra.com foi logado com sucesso.
+[2023-11-29 13:10:16] - O murilo@spectra.com está cadastrando uma nova máquina...
+
+[2023-11-29 13:17:52] - O murilo@spectra.com foi logado com sucesso.
+[2023-11-29 13:17:52] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-29 13:19:53] - O murilo@spectra.com foi logado com sucesso.
+[2023-11-29 13:19:53] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-29 13:20:57] - O murilo@spectra.com foi logado com sucesso.
+[2023-11-29 13:20:57] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-29 13:22:56] - O murilo@spectra.com foi logado com sucesso.
+[2023-11-29 13:22:56] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-29 13:29:57] - O usuário com o e-mail mukill3r tentou inserir um e-mail incompleto.
+[2023-11-29 13:29:57] - O murilo@spectra.com foi logado com sucesso.
+[2023-11-29 13:29:57] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-29 13:31:18] - O murilo@spectra.com foi logado com sucesso.
+[2023-11-29 13:31:18] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-29 13:32:41] - Desculpe, não encontramos nenhum usuário correspondente ao e-mail murilo@specta.com.
+[2023-11-29 13:32:41] - O murilo@spectra.com foi logado com sucesso.
+[2023-11-29 13:32:41] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-29 13:42:59] - O murilo@spectra.com foi logado com sucesso.
+[2023-11-29 13:42:59] - O murilo@spectra.com está cadastrando uma nova máquina...
+

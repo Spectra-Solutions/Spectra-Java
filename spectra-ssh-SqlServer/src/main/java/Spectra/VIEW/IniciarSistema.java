@@ -110,7 +110,7 @@ public class IniciarSistema {
                     
                     O monitoramento ja foi iniciado!
                     Acesse a dashboard para visualizar: http://44.216.221.58/home""");
-            capturarDados();
+            capturarDados(maqui.getNome());
         }
 
         else {
@@ -132,17 +132,17 @@ public class IniciarSistema {
             maqui.setSecao(secaoDigitada);
 
             validarMaquina.getFkEmpresa(nomeDigitado, secaoDigitada, func.getEmail(), func.getSenha());
-            capturarDados();
+            capturarDados(nomeDigitado);
         }
     }
 
-    public void capturarDados(){
+    public void capturarDados(String nome){
 
-        try {
-            processoDao.getFkMaquina(maqui.getHostName());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            processoDao.getFkMaquina(maqui.getHostName());
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
 
         final long segundos = (1000 * 5);
 
@@ -186,19 +186,19 @@ public class IniciarSistema {
                 }
 
                 try {
-                    slackDao.getSelectCpu();
+                    slackDao.getSelectCpu(nome);
                 } catch (IOException e){
                     throw new RuntimeException(e);
                 }
 
                 try {
-                    slackDao.getSelectRam();
+                    slackDao.getSelectRam(nome);
                 } catch (IOException e){
                     throw new RuntimeException(e);
                 }
 
                 try {
-                    slackDao.getSelectDisco();
+                    slackDao.getSelectDisco(nome);
                 } catch (IOException e){
                     throw new RuntimeException(e);
                 }
