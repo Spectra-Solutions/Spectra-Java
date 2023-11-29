@@ -44,14 +44,14 @@ public class InovacaoDao {
                         conMySQl.update("UPDATE Comando SET stattus = 0 WHERE idComando = ?", idComando);
 
                         if (hostName.equalsIgnoreCase(maquina.getHostName())) {
-                            if (maquina.getSistemaOperacional().equalsIgnoreCase("Linux") && maquina.getSistemaOperacional().equalsIgnoreCase("Ubuntu")) {
+                            if (maquina.getSistemaOperacional().equalsIgnoreCase("Linux") || maquina.getSistemaOperacional().equalsIgnoreCase("Ubuntu")) {
 
                                 if (nomeComando.equalsIgnoreCase("sudo shutdown -h now")) {
                                     slackDao.desligarMaquina(maquina.getHostName());
                                     
                                     log.setMensagem(String.format("""
                                         A maquina %s foi desligada""", maquina.getHostName()));
-                                    log.gerarLog("Inovacao");
+                                    log.gerarLog("inovacao");
 
                                     inovacao.desligarMaquinaLinux();
                                 }
@@ -61,7 +61,7 @@ public class InovacaoDao {
 
                                     log.setMensagem(String.format("""
                                         A maquina %s foi reiniciada""", maquina.getHostName()));
-                                    log.gerarLog("Inovacao");
+                                    log.gerarLog("inovacao");
 
                                     inovacao.reiniciarMaquinaLinux();
                                 }
@@ -73,7 +73,7 @@ public class InovacaoDao {
 
                                     log.setMensagem(String.format("""
                                         A maquina %s foi desligada""", maquina.getHostName()));
-                                    log.gerarLog("Inovacao");
+                                    log.gerarLog("inovacao");
 
                                     inovacao.desligarMaquinaWindows();
                                 }
@@ -83,7 +83,7 @@ public class InovacaoDao {
 
                                     log.setMensagem(String.format("""
                                         A maquina %s foi reiniciada""", maquina.getHostName()));
-                                    log.gerarLog("Inovacao");
+                                    log.gerarLog("inovacao");
 
                                     inovacao.reiniciarMaquinaWindows();
                                 }
@@ -93,7 +93,7 @@ public class InovacaoDao {
 
                     catch (EmptyResultDataAccessException e){
                         log.setMensagem(String.format("Trocar o status do comando deu errado!! %s", e));
-                        log.gerarLog("Inovacao");
+                        log.gerarLog("inovacao");
 
                         System.err.println("Trocar o status do comando deu errado!! %s");
                         return null; // Retorna null em caso de exceção
@@ -105,7 +105,7 @@ public class InovacaoDao {
 
                 else {
                     log.setMensagem(String.format("Esse comando nessa máquina ja foi executado!!"));
-                    log.gerarLog("Inovacao");
+                    log.gerarLog("inovacao");
 
                     System.out.println("Comando ja foi executado!");
                 }
@@ -115,7 +115,7 @@ public class InovacaoDao {
 
         catch (EmptyResultDataAccessException e) {
             log.setMensagem(String.format("O comando de desligar e reiniciar a maquina não foi encontrado!! %s", e));
-            log.gerarLog("Inovacao");
+            log.gerarLog("inovacao");
 
             System.out.println("O comando de desligar e reiniciar a maquina não foi encontrado!!");
             return null; // Retorna null em caso de exceção

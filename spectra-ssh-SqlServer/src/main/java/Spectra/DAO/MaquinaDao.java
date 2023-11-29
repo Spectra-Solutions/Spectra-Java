@@ -26,7 +26,7 @@ public class MaquinaDao {
 
         catch (EmptyResultDataAccessException e){
             log.setMensagem(String.format("Erro na busca da fkEmpresa", e));
-            log.gerarLog("error");
+            log.gerarLog("erro");
             System.err.println("Nenhum resultado encontrado na fkEmpresa maquina");
         }
     }
@@ -52,15 +52,15 @@ public class MaquinaDao {
                     Maquina cadastrada!
                     
                     O monitoramento ja foi iniciado!
-                    Acesse a dashboard para visualizar: http://34.234.237.115:3333
+                    Acesse a dashboard para visualizar: http://44.216.221.58/home
                     """);
         }
 
         else {
-            log.setMensagem("Erro no cadastro de uma máquina no MySQL!");
+            log.setMensagem("Erro no cadastro de uma máquina no SqlServer!");
             log.gerarLog("erro");
 
-            System.err.println("Erro no cadastro de uma máquina no MySQL!");
+            System.err.println("Erro no cadastro de uma máquina no SqlServer!");
         }
     }
 

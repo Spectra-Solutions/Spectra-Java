@@ -51,7 +51,7 @@ public class MaquinaDao{
                     Maquina cadastrada!
                     
                     O monitoramento ja foi iniciado!
-                    Acesse a dashboard para visualizar: http://34.234.237.115:3333
+                    Acesse a dashboard para visualizar: http://44.216.221.58/home
                     """);
         }
 

@@ -84,13 +84,13 @@ public class RedeDao extends Dao{
         Integer linhasAlteradas = conSqlServer.update(sql, rede.getConsumoUpload(), rede.getConsumoDownload(), rede.getFkComponente(), rede.getFkMaquina());
 
         if (linhasAlteradas > 0){
-            System.out.println("Inserção no Mysql Rede realizada com sucesso!");
+            System.out.println("Inserção no SqlServer Rede realizada com sucesso!");
         }
 
         else {
-            log.setMensagem("Erro no cadastro dos dados da Rede no MySQL!");
+            log.setMensagem("Erro no cadastro dos dados da Rede no SqlServer!");
             log.gerarLog("erro");
-            System.err.println("Erro no cadastro dos dados da Rede no MySQL!");
+            System.err.println("Erro no cadastro dos dados da Rede no SqlServer!");
         }
     }
 }

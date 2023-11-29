@@ -57,11 +57,11 @@ public class CpuDao extends Dao{
         Integer linhasAlteradas = conSqlServer.update(sql, cpu.getEspecificacao(), cpu.getConsumoAtual(), cpu.getFkComponente(), cpu.getFkMaquina());
 
         if (linhasAlteradas > 0) {
-            System.out.println("Inserção no Mysql cpu realizada com sucesso!");
+            System.out.println("Inserção no SqlServer cpu realizada com sucesso!");
         } else {
-            log.setMensagem("Erro no cadastro dos dados da cpu no MySQL!");
+            log.setMensagem("Erro no cadastro dos dados da cpu no SqlServer!");
             log.gerarLog("erro");
-            System.err.println("Erro no cadastro dos dados da cpu no MySQL!");
+            System.err.println("Erro no cadastro dos dados da cpu no SqlServer!");
         }
     }
 }

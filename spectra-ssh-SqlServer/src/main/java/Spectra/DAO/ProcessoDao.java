@@ -56,9 +56,9 @@ public class ProcessoDao extends Dao{
         }
 
         else {
-            log.setMensagem("Erro no cadastro dos dados da Memoria ram no MySQL!");
+            log.setMensagem("Erro no cadastro dos dados do Processo no SqlServer!");
             log.gerarLog("erro");
-            System.out.println("Erro ao inserir no MySQL Processo!");
+            System.out.println("Erro ao inserir no SqlServer Processo!");
         }
     }
     public void getFkComponente() {}

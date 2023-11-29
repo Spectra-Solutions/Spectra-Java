@@ -1,3 +1,3 @@
-[2023-11-29 09:42:51] - O murilo@spectra.com foi logado com sucesso.
-[2023-11-29 09:42:51] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+[2023-11-29 10:14:26] - O murilo@spectra.com foi logado com sucesso.
+[2023-11-29 10:14:26] - O murilo@spectra.com está cadastrando uma nova máquina...
 

@@ -94,13 +94,13 @@ public class DiscoDao extends Dao{
         }
 
         if(linhasAlteradas > 0){
-            System.out.println("Inserção no Mysql Disco realizada com sucesso!");
+            System.out.println("Inserção no SqlServer Disco realizada com sucesso!");
         }
 
         else {
-            log.setMensagem("Erro no cadastro dos dados do disco no MySQL!");
+            log.setMensagem("Erro no cadastro dos dados do disco no SqlServer!");
             log.gerarLog("erro");
-            System.err.println("Erro no cadastro dos dados do disco no MySQL!");
+            System.err.println("Erro no cadastro dos dados do disco no SqlServer!");
         }
     }
 }

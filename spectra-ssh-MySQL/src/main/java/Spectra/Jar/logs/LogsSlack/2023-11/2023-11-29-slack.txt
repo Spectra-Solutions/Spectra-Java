@@ -1,3 +1,4 @@
-[2023-11-29 09:42:51] - Não existe select na tabela registro avisos, cpu org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-[2023-11-29 09:42:51] - Não existe select na tabela registro avisos, cpu org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-[2023-11-29 09:42:51] - Não existe select na tabela registro avisos, cpu org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-29 10:14:26] - Não existe select na tabela registro avisos, cpu org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-29 10:14:26] - Não existe select na tabela registro avisos, ram org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-29 10:14:26] - Não existe select na tabela registro avisos, cpu org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-29 10:14:26] - Não existe select na tabela registro avisos, ram org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0

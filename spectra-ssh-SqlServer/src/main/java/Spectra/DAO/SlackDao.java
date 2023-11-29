@@ -30,7 +30,7 @@ public class SlackDao {
             slack.setUrl(urlEmpresa);
         }catch (EmptyResultDataAccessException e){
             log.setMensagem(String.format("Erro na busca da url Slack %s", e));
-            log.gerarLog("error");
+            log.gerarLog("slack");
 
             System.err.println("Erro na busca da url Slack");
         }
@@ -87,7 +87,7 @@ public class SlackDao {
 
                 } catch (EmptyResultDataAccessException e){
                     log.setMensagem(String.format("Não existe select na tabela registro avisos, cpu %s", e));
-                    log.gerarLog("erro");
+                    log.gerarLog("slack");
 
                     System.err.println("Não existe select na tabela registro avisos, cpu");
                 }
@@ -95,7 +95,7 @@ public class SlackDao {
 
         } catch (EmptyResultDataAccessException e){
             log.setMensagem(String.format("Não existe select na tabela registro avisos, cpu %s", e));
-            log.gerarLog("erro");
+            log.gerarLog("slack");
 
             System.err.println("Não existe select na tabela registro avisos, cpu");
         } catch (InterruptedException e) {
@@ -153,7 +153,7 @@ public class SlackDao {
 
                 } catch (EmptyResultDataAccessException e){
                     log.setMensagem(String.format("Não existe select na tabela registro avisos, ram %s", e));
-                    log.gerarLog("erro");
+                    log.gerarLog("slack");
 
                     System.err.println("Não existe select na tabela registro avisos, ram ");
                 }
@@ -161,7 +161,7 @@ public class SlackDao {
 
         } catch (EmptyResultDataAccessException e){
             log.setMensagem(String.format("Não existe select na tabela registro avisos, ram %s", e));
-            log.gerarLog("erro");
+            log.gerarLog("slack");
 
             System.err.println("Não existe select na tabela registro avisos, ram");
         } catch (InterruptedException e) {
@@ -219,7 +219,7 @@ public class SlackDao {
 
                 } catch (EmptyResultDataAccessException e){
                     log.setMensagem(String.format("Não existe select na tabela registro avisos, disco %s", e));
-                    log.gerarLog("erro");
+                    log.gerarLog("slack");
 
                     System.err.println("Não existe select na tabela registro avisos, disco");
                 }
@@ -227,11 +227,25 @@ public class SlackDao {
 
         } catch (EmptyResultDataAccessException e){
             log.setMensagem(String.format("Não existe select na tabela registro avisos, disco %s", e));
-            log.gerarLog("erro");
+            log.gerarLog("slack");
 
             System.err.println("Não existe select na tabela registro avisos, disco ");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void desligarMaquina(String hostName) throws IOException, InterruptedException {
+        slack.setNotificaçãoSlack(String.format("A maquina %s, foi desligada", hostName));
+        JSONObject json = new JSONObject();
+        json.put("text", slack.getNotificaçãoSlack());
+        slack.sendMenssage(json);
+    }
+
+    public void reiniciarMaquina(String hostName) throws IOException, InterruptedException {
+        slack.setNotificaçãoSlack(String.format("A maquina %s, foi reiniciada", hostName));
+        JSONObject json = new JSONObject();
+        json.put("text", slack.getNotificaçãoSlack());
+        slack.sendMenssage(json);
     }
 }

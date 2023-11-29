@@ -90,6 +90,14 @@ public class Log {
                 caminhoEspecifico = criarDiretorioEspecifico("LogsInovacao");
             }
 
+            case "banco" -> {
+                caminhoEspecifico = criarDiretorioEspecifico("LogsBancoDeDados");
+            }
+
+            case "slack" -> {
+                caminhoEspecifico = criarDiretorioEspecifico("LogsSlack");
+            }
+
             default -> {
                 // Se não corresponder a nenhum tipo conhecido, usa o diretório principal
                 caminhoEspecifico = caminhoPrincipal;

@@ -14,9 +14,10 @@ import java.util.Map;
 public class InovacaoDao {
     Inovacao inovacao = new Inovacao();
     Log log = new Log();
+    Maquina maquina = new Maquina();
+    SlackDao slackDao = new SlackDao();
     ConexaoSQLServer conexaoSQLServer = new ConexaoSQLServer();
     protected JdbcTemplate conSqlServer = conexaoSQLServer.getConexaoSqlServer();
-    Maquina maquina = new Maquina();
 
     public String executarComandoMaquina() throws IOException {
 
@@ -25,7 +26,8 @@ public class InovacaoDao {
                 FROM Maquina
                     JOIN Comando 
                         ON Maquina.idMaquina = Comando.fkMaquina
-                            WHERE hostName = ?""";
+                            WHERE Maquina.hostName = ? 
+                                AND Comando.stattus = 1""";
 
         try {
 
@@ -33,10 +35,8 @@ public class InovacaoDao {
             Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, maquina.getHostName());
 
             Integer idComando = (Integer) resultadoMap.get("idComando");
-
             String nomeComando = (String) resultadoMap.get("nomeComando");
             String hostName = (String) resultadoMap.get("hostName");
-
             Boolean status = (Boolean) resultadoMap.get("stattus");
 
             if (status){
@@ -45,9 +45,11 @@ public class InovacaoDao {
                     conSqlServer.update("UPDATE Comando SET stattus = 0 WHERE idComando = ?", idComando);
 
                     if (hostName.equalsIgnoreCase(maquina.getHostName())) {
-                        if (maquina.getSistemaOperacional().equalsIgnoreCase("Linux") && maquina.getSistemaOperacional().equalsIgnoreCase("Ubuntu")) {
+                        if (maquina.getSistemaOperacional().equalsIgnoreCase("Linux") || maquina.getSistemaOperacional().equalsIgnoreCase("Ubuntu")) {
 
                             if (nomeComando.equalsIgnoreCase("sudo shutdown -h now")) {
+                                slackDao.desligarMaquina(maquina.getHostName());
+
                                 log.setMensagem(String.format("""
                                         A maquina %s foi desligada""", maquina.getHostName()));
                                 log.gerarLog("inovacao");
@@ -56,6 +58,8 @@ public class InovacaoDao {
                             }
 
                             else if (nomeComando.equalsIgnoreCase("sudo shutdown -r now")) {
+                                slackDao.reiniciarMaquina(maquina.getHostName());
+
                                 log.setMensagem(String.format("""
                                         A maquina %s foi reiniciada""", maquina.getHostName()));
                                 log.gerarLog("inovacao");
@@ -66,6 +70,8 @@ public class InovacaoDao {
 
                         else if (maquina.getSistemaOperacional().equalsIgnoreCase("Windows")) {
                             if (nomeComando.equalsIgnoreCase("shutdown /s /f /t 0")) {
+                                slackDao.desligarMaquina(maquina.getHostName());
+
                                 log.setMensagem(String.format("""
                                         A maquina %s foi desligada""", maquina.getHostName()));
                                 log.gerarLog("inovacao");
@@ -74,6 +80,8 @@ public class InovacaoDao {
                             }
 
                             else if (nomeComando.equalsIgnoreCase("shutdown /r /f /t 0")) {
+                                slackDao.reiniciarMaquina(maquina.getHostName());
+
                                 log.setMensagem(String.format("""
                                         A maquina %s foi reiniciada""", maquina.getHostName()));
                                 log.gerarLog("inovacao");
@@ -90,8 +98,9 @@ public class InovacaoDao {
 
                     System.err.println("Trocar o status do comando deu errado!! %s");
                     return null; // Retorna null em caso de exceção
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
-
             }
 
             else {

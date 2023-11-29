@@ -182,6 +182,12 @@ public class IniciarSistema {
                 }
 
                 try {
+                    verificarComando.executarComandoMaquina();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                try {
                     slackDao.getSelectCpu();
                 } catch (IOException e){
                     throw new RuntimeException(e);
@@ -196,12 +202,6 @@ public class IniciarSistema {
                 try {
                     slackDao.getSelectDisco();
                 } catch (IOException e){
-                    throw new RuntimeException(e);
-                }
-
-                try {
-                    verificarComando.executarComandoMaquina();
-                } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
 
