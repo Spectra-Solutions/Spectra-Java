@@ -44,3 +44,24 @@
 [2023-11-29 13:42:59] - O murilo@spectra.com foi logado com sucesso.
 [2023-11-29 13:42:59] - O murilo@spectra.com está cadastrando uma nova máquina...
 
+[2023-11-29 17:05:11] - O usuário não preencheu todos os campos
+[2023-11-29 17:05:50] - O evelyn@jitterbit.com foi logado com sucesso.
+[2023-11-29 17:05:50] - O evelyn@jitterbit.com começou o monitoramento da maquina PC_EVY
+
+[2023-11-29 17:09:05] - O evelyn@spectraa.com foi logado com sucesso.
+[2023-11-29 17:09:05] - O evelyn@spectraa.com está cadastrando uma nova máquina...
+
+[2023-11-29 17:33:55] - Desculpe, não encontramos nenhum usuário correspondente ao e-mail evelyn@jitterbit.com.
+[2023-11-29 17:38:37] - O evelyn@spectraa.com foi logado com sucesso.
+[2023-11-29 17:38:37] - O evelyn@spectraa.com está cadastrando uma nova máquina...
+
+[2023-11-29 17:40:47] - Desculpe, não encontramos nenhum usuário correspondente ao e-mail evelyn@jitterbit.com.
+[2023-11-29 17:41:11] - O evelyn@spectraa.com foi logado com sucesso.
+[2023-11-29 17:41:11] - O evelyn@spectraa.com começou o monitoramento da maquina PC_EVY
+
+[2023-11-29 17:42:36] - O evelyn@spectraa.com foi logado com sucesso.
+[2023-11-29 17:42:36] - O evelyn@spectraa.com começou o monitoramento da maquina PC_EVY
+
+[2023-11-29 18:09:11] - O caramico@sptech.com foi logado com sucesso.
+[2023-11-29 18:09:11] - O caramico@sptech.com começou o monitoramento da maquina PC_EVY
+
