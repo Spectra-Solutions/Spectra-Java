@@ -25,7 +25,7 @@ public class MaquinaDao{
 
         catch (EmptyResultDataAccessException e){
             log.setMensagem(String.format("Erro na busca da fkEmpresa", e));
-            log.gerarLog("error");
+            log.gerarLog("erro");
             System.err.println("Nenhum resultado encontrado na fkEmpresa maquina");
         }
     }

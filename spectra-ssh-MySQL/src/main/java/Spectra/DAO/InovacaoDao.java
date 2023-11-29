@@ -51,7 +51,7 @@ public class InovacaoDao {
                                     
                                     log.setMensagem(String.format("""
                                         A maquina %s foi desligada""", maquina.getHostName()));
-                                    log.gerarLog("inovacao");
+                                    log.gerarLog("Inovacao");
 
                                     inovacao.desligarMaquinaLinux();
                                 }
@@ -61,7 +61,7 @@ public class InovacaoDao {
 
                                     log.setMensagem(String.format("""
                                         A maquina %s foi reiniciada""", maquina.getHostName()));
-                                    log.gerarLog("inovacao");
+                                    log.gerarLog("Inovacao");
 
                                     inovacao.reiniciarMaquinaLinux();
                                 }
@@ -73,7 +73,7 @@ public class InovacaoDao {
 
                                     log.setMensagem(String.format("""
                                         A maquina %s foi desligada""", maquina.getHostName()));
-                                    log.gerarLog("inovacao");
+                                    log.gerarLog("Inovacao");
 
                                     inovacao.desligarMaquinaWindows();
                                 }
@@ -83,7 +83,7 @@ public class InovacaoDao {
 
                                     log.setMensagem(String.format("""
                                         A maquina %s foi reiniciada""", maquina.getHostName()));
-                                    log.gerarLog("inovacao");
+                                    log.gerarLog("Inovacao");
 
                                     inovacao.reiniciarMaquinaWindows();
                                 }
@@ -93,7 +93,7 @@ public class InovacaoDao {
 
                     catch (EmptyResultDataAccessException e){
                         log.setMensagem(String.format("Trocar o status do comando deu errado!! %s", e));
-                        log.gerarLog("inovacao");
+                        log.gerarLog("Inovacao");
 
                         System.err.println("Trocar o status do comando deu errado!! %s");
                         return null; // Retorna null em caso de exceção
@@ -105,7 +105,7 @@ public class InovacaoDao {
 
                 else {
                     log.setMensagem(String.format("Esse comando nessa máquina ja foi executado!!"));
-                    log.gerarLog("inovacao");
+                    log.gerarLog("Inovacao");
 
                     System.out.println("Comando ja foi executado!");
                 }
@@ -115,7 +115,7 @@ public class InovacaoDao {
 
         catch (EmptyResultDataAccessException e) {
             log.setMensagem(String.format("O comando de desligar e reiniciar a maquina não foi encontrado!! %s", e));
-            log.gerarLog("inovacao");
+            log.gerarLog("Inovacao");
 
             System.out.println("O comando de desligar e reiniciar a maquina não foi encontrado!!");
             return null; // Retorna null em caso de exceção
