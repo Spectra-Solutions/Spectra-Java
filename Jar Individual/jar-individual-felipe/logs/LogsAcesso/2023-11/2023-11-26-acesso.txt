@@ -1,0 +1,80 @@
+[2023-11-26 22:27:13] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 22:27:13] - O murilo@spectra.com está cadastrando uma nova máquina...
+
+[2023-11-26 22:28:50] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 22:28:50] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-26 22:35:37] - Desculpe, não encontramos nenhum usuário correspondente a esse e-mail murilo@gmail.com
+
+[2023-11-26 22:35:37] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 22:35:37] - O Murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-26 22:40:38] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 22:40:38] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-26 22:46:16] - Desculpe, não encontramos nenhum usuário correspondente a esse e-mail murilo@spectra.com
+
+[2023-11-26 22:46:16] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 22:46:16] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-26 22:47:59] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 22:47:59] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-26 22:49:10] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 22:49:10] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-26 22:51:41] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 22:51:41] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-26 22:52:30] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 22:52:30] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-26 22:59:33] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 22:59:33] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-26 23:00:56] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 23:00:56] - O murilo@spectra.com está cadastrando uma nova máquina...
+
+[2023-11-26 23:13:35] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 23:13:35] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-26 23:15:01] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 23:15:01] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-26 23:21:18] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 23:21:18] - O murilo@spectra.com está cadastrando uma nova máquina...
+
+[2023-11-26 23:25:26] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 23:25:26] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-26 23:28:23] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 23:28:23] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-26 23:30:09] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 23:30:09] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+
+[2023-11-26 23:32:57] - O murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 23:32:57] - O murilo@spectra.com está cadastrando uma nova máquina...
+
+[2023-11-26 23:36:37] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-26 23:36:37] - O Murilo@spectra.com começou o monitoramento da maquina MURILO
+

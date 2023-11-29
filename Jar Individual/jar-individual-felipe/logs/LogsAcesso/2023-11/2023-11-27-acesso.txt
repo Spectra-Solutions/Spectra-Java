@@ -1,0 +1,58 @@
+[2023-11-27 17:45:17] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-27 17:50:01] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-27 17:50:01] - O Murilo@spectra.com está cadastrando uma nova máquina...
+
+[2023-11-27 17:52:28] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-27 17:52:28] - O Murilo@spectra.com está cadastrando uma nova máquina...
+
+[2023-11-27 17:56:12] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-27 17:56:12] - O Murilo@spectra.com está cadastrando uma nova máquina...
+
+[2023-11-27 17:59:55] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-27 17:59:55] - O Murilo@spectra.com começou o monitoramento da maquina DESKTOP-MRBKL77
+
+[2023-11-27 19:19:40] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-27 19:19:40] - O Murilo@spectra.com começou o monitoramento da maquina DESKTOP-MRBKL77
+
+[2023-11-27 19:28:26] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-27 19:28:26] - O Murilo@spectra.com começou o monitoramento da maquina DESKTOP-MRBKL77
+
+[2023-11-27 19:29:50] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-27 19:29:50] - O Murilo@spectra.com começou o monitoramento da maquina DESKTOP-MRBKL77
+
+[2023-11-27 19:36:11] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-27 19:36:11] - O Murilo@spectra.com começou o monitoramento da maquina DESKTOP-MRBKL77
+
+[2023-11-27 19:39:23] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-27 19:39:23] - O Murilo@spectra.com começou o monitoramento da maquina DESKTOP-MRBKL77
+
+[2023-11-27 19:45:26] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-27 19:45:26] - O Murilo@spectra.com começou o monitoramento da maquina DESKTOP-MRBKL77
+
+[2023-11-27 19:47:00] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-27 19:47:00] - O Murilo@spectra.com começou o monitoramento da maquina DESKTOP-MRBKL77
+
+[2023-11-27 19:50:33] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-27 19:50:33] - O Murilo@spectra.com começou o monitoramento da maquina DESKTOP-MRBKL77
+
+[2023-11-27 19:53:55] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-27 19:53:55] - O Murilo@spectra.com começou o monitoramento da maquina DESKTOP-MRBKL77
+
+[2023-11-27 19:56:02] - O Murilo@spectra.com foi logado com sucesso
+
+[2023-11-27 19:56:02] - O Murilo@spectra.com começou o monitoramento da maquina DESKTOP-MRBKL77
+

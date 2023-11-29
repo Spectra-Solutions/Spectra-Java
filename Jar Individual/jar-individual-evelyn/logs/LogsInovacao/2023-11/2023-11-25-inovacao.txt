@@ -1,0 +1,57 @@
+[2023-11-25 09:46:05] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 10:23:41] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 10:23:41] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 10:23:41] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 10:26:20] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 10:27:18] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 10:27:18] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 10:27:58] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 10:27:58] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 10:27:58] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 10:27:58] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 10:27:58] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 10:27:58] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 10:27:58] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 10:27:58] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 10:27:58] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 10:27:58] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 11:19:35] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 11:19:35] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 11:19:35] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 11:19:35] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 11:19:35] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 11:19:35] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 11:19:35] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 11:21:45] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 11:21:45] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 11:21:45] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 11:21:45] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 13:36:14] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 13:36:14] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 13:36:14] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 13:36:14] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 13:36:14] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 14:59:25] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 14:59:25] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 14:59:25] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 14:59:25] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:34:26] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:34:26] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:34:26] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:34:26] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:34:26] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:34:26] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:34:26] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:34:26] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:34:26] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:34:26] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:34:26] - Esse comando nessa máquina ja foi executado!!
+[2023-11-25 15:34:26] - Esse comando nessa máquina ja foi executado!!
+[2023-11-25 15:34:26] - Esse comando nessa máquina ja foi executado!!
+[2023-11-25 15:39:10] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:39:10] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:39:10] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:39:10] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:39:10] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:39:10] - O comando de desligar e reiniciar a maquina não foi encontrado!! org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+[2023-11-25 15:39:10] - A maquina PC_EVY foi reiniciada
