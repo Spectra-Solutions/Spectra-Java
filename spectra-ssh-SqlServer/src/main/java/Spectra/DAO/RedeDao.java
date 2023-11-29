@@ -72,8 +72,6 @@ public class RedeDao extends Dao{
 
         rede.setConsumoUpload(Double.parseDouble(consumoUploadString));
 
-        System.out.println(rede.getConsumoUpload());
-
         String consumoDownloadString = (ConversorSpectra.formatarBytes(variavelAuxiliarConsumoDownload));
 
         consumoDownloadString = consumoDownloadString.replaceAll("\\.","");
@@ -81,8 +79,6 @@ public class RedeDao extends Dao{
         consumoDownloadString = consumoDownloadString.replace("," , ".");
 
         rede.setConsumoDownload(Double.parseDouble(consumoDownloadString));
-
-        System.out.println(rede.getConsumoDownload());
 
         String sql = "INSERT INTO RegistroComponente (consumoUpload, consumoDownload, fkComponente, fkMaquina) VALUES (?, ?, ?, ?)";
         Integer linhasAlteradas = conSqlServer.update(sql, rede.getConsumoUpload(), rede.getConsumoDownload(), rede.getFkComponente(), rede.getFkMaquina());

@@ -39,14 +39,13 @@ public class SlackDao {
 
     public void getSelectCpu() throws IOException {
         String sql = """
-                SELECT RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
+                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
                 	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
                 		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
                 			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
                 				WHERE Maquina.hostName = ?
                 					AND RegistroAvisos.fkComponente = 1
-                						AND RegistroAvisos.fkTipoAviso = 1
-                							LIMIT 1""";
+                						AND RegistroAvisos.fkTipoAviso = 1""";
         try{
             Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, maquina.getHostName());
 
@@ -63,14 +62,13 @@ public class SlackDao {
                 slack.sendMenssage(json);
             } else {
                 String sql1 = """
-                SELECT RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
+                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
                 	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
                 		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
                 			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
                 				WHERE Maquina.hostName = ?
                 					AND RegistroAvisos.fkComponente = 1
-                						AND RegistroAvisos.fkTipoAviso = 2
-                							LIMIT 1""";
+                						AND RegistroAvisos.fkTipoAviso = 2""";
 
                 try {
                     Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, maquina.getHostName());
@@ -107,14 +105,13 @@ public class SlackDao {
 
     public void getSelectRam() throws IOException {
         String sql = """
-                SELECT RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
+                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
                 	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
                 		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
                 			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
                 				WHERE Maquina.hostName = ?
                 					AND RegistroAvisos.fkComponente = 2
-                						AND RegistroAvisos.fkTipoAviso = 1
-                							LIMIT 1""";
+                						AND RegistroAvisos.fkTipoAviso = 1""";
         try{
             Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, maquina.getHostName());
 
@@ -131,14 +128,13 @@ public class SlackDao {
                 slack.sendMenssage(json);
             } else {
                 String sql1 = """
-                SELECT RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
+                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
                 	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
                 		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
                 			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
                 				WHERE Maquina.hostName = ?
                 					AND RegistroAvisos.fkComponente = 2
-                						AND RegistroAvisos.fkTipoAviso = 2
-                							LIMIT 1""";
+                						AND RegistroAvisos.fkTipoAviso = 2""";
 
                 try {
                     Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, maquina.getHostName());
@@ -175,14 +171,13 @@ public class SlackDao {
 
     public void getSelectDisco() throws IOException {
         String sql = """
-                SELECT RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
+                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
                 	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
                 		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
                 			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
                 				WHERE Maquina.hostName = ?
                 					AND RegistroAvisos.fkComponente = 3
-                						AND RegistroAvisos.fkTipoAviso = 1
-                							LIMIT 1""";
+                						AND RegistroAvisos.fkTipoAviso = 1""";
         try{
             Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, maquina.getHostName());
 
@@ -197,17 +192,15 @@ public class SlackDao {
                 JSONObject json = new JSONObject();
                 json.put("text", slack.getNotificaçãoSlack());
                 slack.sendMenssage(json);
-
             } else {
                 String sql1 = """
-                SELECT RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
+                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
                 	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
                 		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
                 			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
                 				WHERE Maquina.hostName = ?
                 					AND RegistroAvisos.fkComponente = 3
-                						AND RegistroAvisos.fkTipoAviso = 2
-                							LIMIT 1""";
+                						AND RegistroAvisos.fkTipoAviso = 2""";
 
                 try {
                     Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, maquina.getHostName());
