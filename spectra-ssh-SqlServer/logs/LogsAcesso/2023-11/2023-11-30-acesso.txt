@@ -10,3 +10,9 @@
 [2023-11-30 02:19:01] - O Poli@gmail.com foi logado com sucesso.
 [2023-11-30 02:19:01] - O Poli@gmail.com começou o monitoramento da maquina MURILO
 
+[2023-11-30 12:07:14] - O murilo@spectra.com foi logado com sucesso.
+[2023-11-30 12:07:14] - O murilo@spectra.com está cadastrando uma nova máquina...
+
+[2023-11-30 12:22:56] - O murilo@spectra.com foi logado com sucesso.
+[2023-11-30 12:22:56] - O murilo@spectra.com começou o monitoramento da maquina MURILO
+

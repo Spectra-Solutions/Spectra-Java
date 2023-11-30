@@ -36,20 +36,17 @@ public class SlackDao {
     }
 
 
-    public void getSelectCpu(String nome) throws IOException {
-
-        System.out.println(nome);
-
+    public void getSelectCpu() throws IOException {
         String sql = """
                 SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
                 	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
                 		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
                 			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
-                				WHERE Maquina.nome = ?
+                				WHERE Maquina.hostName = ?
                 					AND RegistroAvisos.fkComponente = 1
                 						AND RegistroAvisos.fkTipoAviso = 1""";
         try{
-            Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, nome);
+            Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, maquina.getHostName());
 
             Integer fkTipoAviso = (Integer) resultadoMap.get("fkTipoAviso");
 
@@ -68,12 +65,12 @@ public class SlackDao {
                 	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
                 		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
                 			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
-                				WHERE Maquina.nome = ?
+                				WHERE Maquina.hostName = ?
                 					AND RegistroAvisos.fkComponente = 1
                 						AND RegistroAvisos.fkTipoAviso = 2""";
 
                 try {
-                    Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, nome);
+                    Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, maquina.getHostName());
                     Integer fkTipoAviso1 = (Integer) resultadoMap1.get("fkTipoAviso");
 
                     if (fkTipoAviso == 2) {
@@ -105,17 +102,17 @@ public class SlackDao {
         }
     }
 
-    public void getSelectRam(String nome) throws IOException {
+    public void getSelectRam() throws IOException {
         String sql = """
                 SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
                 	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
                 		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
                 			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
-                				WHERE Maquina.nome = ?
+                				WHERE Maquina.hostName = ?
                 					AND RegistroAvisos.fkComponente = 2
                 						AND RegistroAvisos.fkTipoAviso = 1""";
         try{
-            Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, nome);
+            Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, maquina.getHostName());
 
             Integer fkTipoAviso = (Integer) resultadoMap.get("fkTipoAviso");
 
@@ -134,12 +131,12 @@ public class SlackDao {
                 	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
                 		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
                 			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
-                				WHERE Maquina.nome = ?
+                				WHERE Maquina.hostName = ?
                 					AND RegistroAvisos.fkComponente = 2
                 						AND RegistroAvisos.fkTipoAviso = 2""";
 
                 try {
-                    Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, nome);
+                    Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, maquina.getHostName());
                     Integer fkTipoAviso1 = (Integer) resultadoMap1.get("fkTipoAviso");
 
                     if (fkTipoAviso == 2) {
@@ -171,17 +168,17 @@ public class SlackDao {
         }
     }
 
-    public void getSelectDisco(String nome) throws IOException {
+    public void getSelectDisco() throws IOException {
         String sql = """
                 SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
                 	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
                 		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
                 			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
-                				WHERE Maquina.nome = ?
+                				WHERE Maquina.hostName = ?
                 					AND RegistroAvisos.fkComponente = 3
                 						AND RegistroAvisos.fkTipoAviso = 1""";
         try{
-            Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, nome);
+            Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, maquina.getHostName());
 
             Integer fkTipoAviso = (Integer) resultadoMap.get("fkTipoAviso");
 
@@ -200,12 +197,12 @@ public class SlackDao {
                 	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
                 		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
                 			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
-                				WHERE Maquina.nome = ?
+                				WHERE Maquina.hostName = ?
                 					AND RegistroAvisos.fkComponente = 3
                 						AND RegistroAvisos.fkTipoAviso = 2""";
 
                 try {
-                    Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, nome);
+                    Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, maquina.getHostName());
                     Integer fkTipoAviso1 = (Integer) resultadoMap1.get("fkTipoAviso");
 
                     if (fkTipoAviso == 2) {

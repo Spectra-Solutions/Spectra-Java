@@ -2,6 +2,7 @@ package Spectra.DAO;
 
 
 import Spectra.Connection.ConexaoMysQl;
+import Spectra.Connection.ConexaoSQLServer;
 import Spectra.DTO.JanelasAbertas;
 import Spectra.DTO.Maquina;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -12,6 +13,8 @@ import java.util.List;
 public class JanelasAbertasDao {
     ConexaoMysQl conexao = new ConexaoMysQl();
     JdbcTemplate con = conexao.getConexaoMySQl();
+    ConexaoSQLServer conexaoSQLServer = new ConexaoSQLServer();
+    JdbcTemplate conSqlServer = conexaoSQLServer.getConexaoSqlServer();
     JanelasAbertas janelasAbertas = new JanelasAbertas();
 
     public Integer getfkMaquina(){
@@ -20,7 +23,7 @@ public class JanelasAbertasDao {
         Integer idMaquina = null;
 
         try {
-            idMaquina = con.queryForObject(sql, Integer.class, maquina.getHostName());
+            idMaquina = conSqlServer.queryForObject(sql, Integer.class, maquina.getHostName());
         } catch (EmptyResultDataAccessException e){
             System.out.println("Nenhum resultado encontrado no idMaquina Janelas");
         }
@@ -32,7 +35,7 @@ public class JanelasAbertasDao {
         List<String> janelasProibidas = null;
 
         try {
-            janelasProibidas = con.queryForObject(sql, List.class, idMaquina);
+            janelasProibidas = conSqlServer.queryForObject(sql, List.class, idMaquina);
         } catch (EmptyResultDataAccessException e){
             System.out.println("Nenhum resultado encontrado");
         }
@@ -40,7 +43,7 @@ public class JanelasAbertasDao {
     }
 
     public void registrarInfracao(Integer idMaquina, String janelaInfratora){
-        con.update("""
+        conSqlServer.update("""
                 INSERT INTO infracaoJanela(fkMaquinaInfratora, janelaProibidaAberta) 
                 VALUES (?, ?)""", idMaquina, janelaInfratora);
     }

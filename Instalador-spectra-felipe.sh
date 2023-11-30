@@ -178,21 +178,21 @@ fi
 
 echo ""
 echo "9) Verificando se existe aplicação na máquina"
-ls | grep "spectra-ssh-sql-server.jar" &>/dev/null
+ls | grep "jar-individual-felipe.jar" &>/dev/null
 
 if [ $? = 0 ];
     then 
         echo "Existe aplicação!"
 
         sudo docker start spectra_container
-        java -jar spectra-ssh-sql-server.jar 
+        java -jar jar-individual-felipe.jar 
     else 
         echo "Vamos instalar a aplicação Spectra!"
 sleep 5
-wget https://github.com/Spectra-Solutions/Spectra-Java/releases/download/v1.0/spectra-ssh-sql-server.jar &>/dev/null
+wget https://github.com/Spectra-Solutions/Spectra-Java/releases/download/v1.0F/jar-individual-felipe.jar &>/dev/null
 
 sudo docker start spectra_container
 
-sudo chmod +x spectra-ssh-sql-server.jar
-java -jar spectra-ssh-sql-server.jar
+sudo chmod +x jar-individual-felipe.jar
+java -jar jar-individual-felipe.jar
 fi 

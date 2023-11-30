@@ -86,8 +86,16 @@ public class Log {
                 caminhoEspecifico = criarDiretorioEspecifico("LogsErro");
             }
 
-                case "inovacao" -> {
+            case "inovacao" -> {
                 caminhoEspecifico = criarDiretorioEspecifico("LogsInovacao");
+            }
+
+            case "banco" -> {
+                caminhoEspecifico = criarDiretorioEspecifico("LogsBancoDeDados");
+            }
+
+            case "slack" -> {
+                caminhoEspecifico = criarDiretorioEspecifico("LogsSlack");
             }
 
             default -> {

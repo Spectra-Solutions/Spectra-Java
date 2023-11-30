@@ -186,19 +186,19 @@ public class IniciarSistema {
                 }
 
                 try {
-                    slackDao.getSelectCpu(nome);
+                    slackDao.getSelectCpu();
                 } catch (IOException e){
                     throw new RuntimeException(e);
                 }
 
                 try {
-                    slackDao.getSelectRam(nome);
+                    slackDao.getSelectRam();
                 } catch (IOException e){
                     throw new RuntimeException(e);
                 }
 
                 try {
-                    slackDao.getSelectDisco(nome);
+                    slackDao.getSelectDisco();
                 } catch (IOException e){
                     throw new RuntimeException(e);
                 }
