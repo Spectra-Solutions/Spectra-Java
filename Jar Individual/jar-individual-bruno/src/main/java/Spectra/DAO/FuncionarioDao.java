@@ -1,18 +1,16 @@
 package Spectra.DAO;
 
-import Spectra.Connection.ConexaoMysQl;
+import Spectra.Connection.ConexaoSQLServer;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.io.IOException;
-
 public class FuncionarioDao {
-    ConexaoMysQl conexaoMysQl = new ConexaoMysQl();
-    protected JdbcTemplate conMySQl = conexaoMysQl.getConexaoMySQl();
+    ConexaoSQLServer conexaoSQLServer = new ConexaoSQLServer();
+    protected JdbcTemplate conSqlServer = conexaoSQLServer.getConexaoSqlServer();
 
-    public Boolean existEmail(String email, String senha){
-        String query = "SELECT EXISTS (SELECT 2 FROM Funcionario WHERE emailFunc = ? and senhaFunc = ?) as existe";
+    public Boolean existEmailSqlServer(String email, String senha) {
+        String query = "SELECT CASE WHEN EXISTS (SELECT 2 FROM Funcionario WHERE EmailFunc = ? and SenhaFunc = ?) THEN 1 ELSE 0 END AS existe;";
 
-        Integer resultado = conMySQl.queryForObject(
+        Integer resultado = conSqlServer.queryForObject(
                 query,
                 new Object[]{email, senha},
                 (rs, rowNum) -> rs.getInt("existe")
