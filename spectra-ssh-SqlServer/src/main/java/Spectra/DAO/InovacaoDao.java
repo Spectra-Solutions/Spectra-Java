@@ -48,7 +48,7 @@ public class InovacaoDao {
                         if (maquina.getSistemaOperacional().equalsIgnoreCase("Linux") || maquina.getSistemaOperacional().equalsIgnoreCase("Ubuntu")) {
 
                             if (nomeComando.equalsIgnoreCase("sudo shutdown -h now")) {
-                                slackDao.desligarMaquina(maquina.getHostName());
+//                                slackDao.desligarMaquina(maquina.getHostName());
 
                                 log.setMensagem(String.format("""
                                         A maquina %s foi desligada""", maquina.getHostName()));
@@ -58,7 +58,7 @@ public class InovacaoDao {
                             }
 
                             else if (nomeComando.equalsIgnoreCase("sudo shutdown -r now")) {
-                                slackDao.reiniciarMaquina(maquina.getHostName());
+//                                slackDao.reiniciarMaquina(maquina.getHostName());
 
                                 log.setMensagem(String.format("""
                                         A maquina %s foi reiniciada""", maquina.getHostName()));
@@ -70,7 +70,7 @@ public class InovacaoDao {
 
                         else if (maquina.getSistemaOperacional().equalsIgnoreCase("Windows")) {
                             if (nomeComando.equalsIgnoreCase("shutdown /s /f /t 0")) {
-                                slackDao.desligarMaquina(maquina.getHostName());
+//                                slackDao.desligarMaquina(maquina.getHostName());
 
                                 log.setMensagem(String.format("""
                                         A maquina %s foi desligada""", maquina.getHostName()));
@@ -80,7 +80,7 @@ public class InovacaoDao {
                             }
 
                             else if (nomeComando.equalsIgnoreCase("shutdown /r /f /t 0")) {
-                                slackDao.reiniciarMaquina(maquina.getHostName());
+//                                slackDao.reiniciarMaquina(maquina.getHostName());
 
                                 log.setMensagem(String.format("""
                                         A maquina %s foi reiniciada""", maquina.getHostName()));
@@ -98,8 +98,6 @@ public class InovacaoDao {
 
                     System.err.println("Trocar o status do comando deu errado!! %s");
                     return null; // Retorna null em caso de exceção
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
                 }
             }
 
