@@ -51,6 +51,15 @@
             <version>8.2.0</version>
         </dependency>
 
+        <!--=======================================================================================================================-->
+
+        <!-- Driver do servidor de banco SqlServer -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>12.4.2.jre11</version>
+        </dependency>
+
     <!--=======================================================================================================================-->
 
         <!-- Driver do Slack-->

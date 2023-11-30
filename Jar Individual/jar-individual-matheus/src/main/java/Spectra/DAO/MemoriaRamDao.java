@@ -1,14 +1,16 @@
 package Spectra.DAO;
 
+import Spectra.Connection.ConexaoMysQl;
+import Spectra.Connection.ConexaoSQLServer;
 import Spectra.DTO.MemoriaRam;
 import Spectra.Log.Log;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.IOException;
 
 public class MemoriaRamDao extends Dao{
     MemoriaRam memoriaRam = new MemoriaRam();
-    Log log = new Log();
 
     public MemoriaRamDao(){
         super();
@@ -19,7 +21,7 @@ public class MemoriaRamDao extends Dao{
         String sql = "SELECT idMaquina FROM Maquina WHERE hostName = ?";
 
         try {
-            Integer idMaquina = conMySQl.queryForObject(sql, Integer.class, hostName);
+            Integer idMaquina = conSqlServer.queryForObject(sql, Integer.class, hostName);
             memoriaRam.setFkMaquina(idMaquina);
             getFkComponente();
         }
@@ -34,7 +36,7 @@ public class MemoriaRamDao extends Dao{
         String sql = "SELECT idComponente FROM Componente WHERE idComponente = 2";
 
         try {
-            Integer idComponente = conMySQl.queryForObject(sql, Integer.class);
+            Integer idComponente = conSqlServer.queryForObject(sql, Integer.class);
             memoriaRam.setFkComponente(idComponente);
             salvarDados();
         }
@@ -46,15 +48,26 @@ public class MemoriaRamDao extends Dao{
 
     @Override
     public void salvarDados() throws IOException {
-        String sql = "INSERT INTO RegistroComponente (idRegistroComponente, armazenamentoTotal, consumoAtual, armazenamentoDisponivel, fkComponente, fkMaquina) VALUES (?, ?, ?, ?, ?, ?)";
-        Integer linhasAlteradas = conMySQl.update(sql, memoriaRam.getIdRegistro(), memoriaRam.getArmazenamentoTotal(), memoriaRam.getConsumoAtual(), memoriaRam.getArmazenamentoDisponivel(), memoriaRam.getFkComponente(), memoriaRam.getFkMaquina());
+        String sql = "INSERT INTO RegistroComponente (armazenamentoTotal, consumoAtual, armazenamentoDisponivel, fkComponente, fkMaquina) VALUES (?, ?, ?, ?, ?)";
+        Integer linhasAlteradas = conSqlServer.update(sql, memoriaRam.getArmazenamentoTotal(), memoriaRam.getConsumoAtual(), memoriaRam.getArmazenamentoDisponivel(), memoriaRam.getFkComponente(), memoriaRam.getFkMaquina());
 
         if (linhasAlteradas > 0){
-            System.out.println("Inserção no Mysql MemoriaRam realizada com sucesso!");
+            System.out.println("Inserção no SqlServer MemoriaRam realizada com sucesso!");
         }
 
         else {
-            System.err.println("Erro no cadastro dos dados da Memoria ram no MySQL!");
+            System.err.println("Erro no cadastro dos dados da Memoria ram no SqlServer!");
+
+            String sql1 = "INSERT INTO RegistroComponente (idRegistroComponente, armazenamentoTotal, consumoAtual, armazenamentoDisponivel) VALUES (?, ?, ?, ?)";
+            Integer linhasAlteradas1 = conMysql.update(sql1, memoriaRam.getIdRegistro(), memoriaRam.getArmazenamentoTotal(), memoriaRam.getConsumoAtual(), memoriaRam.getArmazenamentoDisponivel());
+
+            if (linhasAlteradas1 > 0){
+                System.out.println("Inserção no Mysql MemoriaRam realizada com sucesso!");
+            }
+
+            else {
+                System.err.println("Erro no cadastro dos dados da Memoria ram no MySQL!");
+            }
         }
     }
 }

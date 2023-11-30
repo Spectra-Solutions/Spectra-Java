@@ -26,84 +26,74 @@ public class IniciarSistema {
     Timer timer = new Timer();
     Scanner inText = new Scanner(System.in);
 
-
     public void validarLogin() throws IOException {
-        String emailDigitado, senhaDigitada;
         Integer comprimentoMinimo = 8;
 
         System.out.println("""
                 Bem vindo ao Sistema de monitoramento Spectra!
-
-                Para iniciar o monitoramento, insira suas credenciais!
+                
+                                  ad88888ba
+                                 d8       8b                                        ,d                            
+                                 S8,                                                88                            
+                                  S8aaaaa,    8b,dPPSba,    ,adPPYba,  ,adPPSba,   MM88MMM  8b,dPPSba,  ,adPPSSba,
+                                         8b,  88P      8a  a8P_____88  a8    ,aa    88      88P     S8          S8
+                                          8b  88       d8  8PP         8b           88      88          ,adPPPPP88
+                                 S8a     a8P  88b,   q,a8   8b,   ,aa  8a,   ,aa    88,     88          88,    ,88
+                                   S88888P    88 SbbdP        Sbbd8    ,adPPSba,    S888    88          088bbdPiS8
+                                              88                                                                  
+                                              88                                                                  
+                                                                                       
+                                Para iniciar o monitoramento, insira suas credenciais!
                 """);
 
-        System.out.println("Digite seu email:" +
-                "");
-        emailDigitado = inText.nextLine();
-        func.setEmail(emailDigitado);
+        for (int tentativas = 1; tentativas <= 3; tentativas++) {
+            System.out.println("Digite seu email:");
+            String emailDigitado = inText.nextLine();
+            func.setEmail(emailDigitado);
 
-        System.out.println("Digite sua senha:" +
-                "");
-        senhaDigitada = inText.nextLine();
-        func.setSenha(senhaDigitada);
+            System.out.println("Digite sua senha:");
+            String senhaDigitada = inText.nextLine();
+            func.setSenha(senhaDigitada);
 
-        if (emailDigitado.equals("") && senhaDigitada.equals("")){
+            if (emailDigitado.isEmpty() || senhaDigitada.isEmpty()) {
+                log.setMensagem("O usuário não preencheu todos os campos");
+                log.gerarLog("acesso");
 
-            log.setMensagem("O usuario não preencheu todos os campos");
-            log.gerarLog("acesso");
-
-            System.err.println("Preencha os campos!");
-        }
-
-        else {
-            if (emailDigitado.indexOf("@") >= 0 && emailDigitado.indexOf(".") >=0){
-                if (senhaDigitada.length() >= comprimentoMinimo){
-                    if (validarFuncionario.existEmail(func.getEmail(), func.getSenha())){
-
-                        log.setMensagem(String.format("""
-                                O %s foi logado com sucesso
-                                """, func.getEmail()));
-                        log.gerarLog("acesso");
-
-                        System.out.println("""
-                                Usuario logado com sucesso
-                                """);
-
-                        slackDao.getUrlEmpresa(func.getEmail(), func.getSenha());
-
-                        validarMaquina();
-                    } else {
-                        log.setMensagem(String.format("""
-                                Desculpe, não encontramos nenhum usuário correspondente a esse e-mail %s
-                                """, func.getEmail()));
-                        log.gerarLog("acesso");
-
-                        System.err.println("""
-                                Desculpe, não encontramos nenhum usuário correspondente a esse e-mail.
-                                """);
-                        validarLogin();
-                    }
-                }
-                else {
-                    log.setMensagem(String.format("""
-                            O usuario com o e-mail %s, tentou inserir uma senha com menos de 8 caracteres.
-                            """, emailDigitado));
-                    log.gerarLog("acesso");
-
-                    System.err.println("A senha deve conter no mínimo 8 caracteres. Por favor, insira uma senha com pelo menos 8 caracteres para garantir a segurança da sua conta.");
-                    validarLogin();
-                }
-            }
-            else {
-                log.setMensagem(String.format("""
-                            O usuario com o e-mail %s, tentou inserir um e-mail incompleto.
-                            """, emailDigitado));
+                System.err.println("Ops! Parece que você esqueceu de preencher alguns campos. Por favor, preencha todos os campos obrigatórios e tente novamente.");
+            } else if (!emailDigitado.contains("@") || !emailDigitado.contains(".")) {
+                log.setMensagem(String.format("O usuário com o e-mail %s tentou inserir um e-mail incompleto.", emailDigitado));
                 log.gerarLog("acesso");
 
                 System.err.println("O e-mail inserido parece estar incompleto ou inválido. Certifique-se de incluir '@' e '.' para formar um endereço de e-mail válido.");
-                validarLogin();
+            } else if (senhaDigitada.length() < comprimentoMinimo) {
+                log.setMensagem(String.format("O usuário com o e-mail %s tentou inserir uma senha com menos de 8 caracteres.", emailDigitado));
+                log.gerarLog("acesso");
+
+                System.err.println("A senha deve conter no mínimo 8 caracteres. Por favor, insira uma senha com pelo menos 8 caracteres para garantir a segurança da sua conta.");
+            }
+
+            else {
+                if (validarFuncionario.existEmailSqlServer(func.getEmail(), func.getSenha())) {
+                    log.setMensagem(String.format("O %s foi logado com sucesso.", func.getEmail()));
+                    log.gerarLog("acesso");
+
+                    System.out.println("""
+                            Usuário logado com sucesso.
+                            """);
+
+                    slackDao.getUrlEmpresa(func.getEmail(), func.getSenha());
+                    validarMaquina();
+                } else {
+                    log.setMensagem(String.format("Desculpe, não encontramos nenhum usuário correspondente ao e-mail %s.", func.getEmail()));
+                    log.gerarLog("acesso");
+
+                    System.err.println("Desculpe, não encontramos nenhum usuário correspondente a esse e-mail.");
+                }
             }
         }
+
+        System.out.println("Número máximo de tentativas alcançado. Encerrando...");
+        System.exit(0);
     }
 
     public void validarMaquina() throws IOException {
@@ -119,9 +109,8 @@ public class IniciarSistema {
                     Esta máquina já está registrada em nosso sistema.
                     
                     O monitoramento ja foi iniciado!
-                    
-                    Acesse a dashboard para visualizar: http://34.234.237.115:3333""");
-            capturarDados();
+                    Acesse a dashboard para visualizar: http://44.216.221.58/home""");
+            capturarDados(maqui.getNome());
         }
 
         else {
@@ -143,11 +132,18 @@ public class IniciarSistema {
             maqui.setSecao(secaoDigitada);
 
             validarMaquina.getFkEmpresa(nomeDigitado, secaoDigitada, func.getEmail(), func.getSenha());
-            capturarDados();
+            capturarDados(nomeDigitado);
         }
     }
 
-    public void capturarDados(){
+    public void capturarDados(String nome){
+
+        try {
+            processoDao.getFkMaquina(maqui.getHostName());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         final long segundos = (1000 * 5);
 
         TimerTask tarefa = new TimerTask() {
@@ -184,7 +180,7 @@ public class IniciarSistema {
                 }
 
                 try {
-                    processoDao.getFkMaquina(maqui.getHostName());
+                    verificarComando.executarComandoMaquina();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -207,30 +203,28 @@ public class IniciarSistema {
                     throw new RuntimeException(e);
                 }
 
-                try {
-                    verificarComando.executarComandoMaquina();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-
                 System.out.println("""
-                        Dados inseridos!!
+                        Inserção bem-sucedida dos dados na base de dados
                         """);
             }
         };
 
         timer.scheduleAtFixedRate(tarefa, 0, segundos);
 
-        System.out.println("""
-                Para encerrar o monitoramento, digite 'sim'
-                """);
+        String finalizacao = "" ;
 
-        String finalizacao = inText.nextLine();
-        if (finalizacao.equalsIgnoreCase("sim")){
-            System.out.println("Finalizando...");
+        while (!finalizacao.equalsIgnoreCase("sim")){
+            System.out.println("""
+                    Para encerrar o monitoramento, digite 'sim'
+                    """);
+            finalizacao = inText.nextLine();
 
-            timer.cancel();
-            System.exit(0);
+            if (finalizacao.equalsIgnoreCase("sim")){
+                System.out.println("Finalizando...");
+
+                timer.cancel();
+                System.exit(0);
+            }
         }
     }
 }

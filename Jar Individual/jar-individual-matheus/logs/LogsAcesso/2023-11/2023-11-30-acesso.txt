@@ -1,0 +1,4 @@
+[2023-11-30 12:46:39] - Desculpe, não encontramos nenhum usuário correspondente ao e-mail murilo@spectra.com.
+[2023-11-30 12:46:39] - O murilo@spectra.com foi logado com sucesso.
+[2023-11-30 12:46:39] - O murilo@spectra.com está cadastrando uma nova máquina...
+

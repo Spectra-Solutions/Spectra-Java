@@ -1,6 +1,7 @@
 package Spectra.DAO;
 
 import Spectra.Connection.ConexaoMysQl;
+import Spectra.Connection.ConexaoSQLServer;
 import Spectra.DTO.Inovacao;
 import Spectra.DTO.Maquina;
 import Spectra.Log.Log;
@@ -12,10 +13,10 @@ import java.util.Map;
 
 public class InovacaoDao {
     Inovacao inovacao = new Inovacao();
-    Log log = new Log();
-    ConexaoMysQl conexaoMysQl = new ConexaoMysQl();
-    protected JdbcTemplate conMySQl = conexaoMysQl.getConexaoMySQl();
     Maquina maquina = new Maquina();
+    SlackDao slackDao = new SlackDao();
+    ConexaoSQLServer conexaoSQLServer = new ConexaoSQLServer();
+    protected JdbcTemplate conSqlServer = conexaoSQLServer.getConexaoSqlServer();
 
     public String executarComandoMaquina() throws IOException {
 
@@ -24,70 +25,68 @@ public class InovacaoDao {
                 FROM Maquina
                     JOIN Comando 
                         ON Maquina.idMaquina = Comando.fkMaquina
-                            WHERE hostName = ?""";
+                            WHERE Maquina.hostName = ? 
+                                AND Comando.stattus = 1""";
 
         try {
 
 
-            Map<String, Object> resultadoMap = conMySQl.queryForMap(sql, maquina.getHostName());
+            Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, maquina.getHostName());
 
-                Integer idComando = (Integer) resultadoMap.get("idComando");
+            Integer idComando = (Integer) resultadoMap.get("idComando");
+            String nomeComando = (String) resultadoMap.get("nomeComando");
+            String hostName = (String) resultadoMap.get("hostName");
+            Boolean status = (Boolean) resultadoMap.get("stattus");
 
-                String nomeComando = (String) resultadoMap.get("nomeComando");
-                String hostName = (String) resultadoMap.get("hostName");
+            if (status){
 
-                Boolean status = (Boolean) resultadoMap.get("stattus");
+                try {
+                    conSqlServer.update("UPDATE Comando SET stattus = 0 WHERE idComando = ?", idComando);
 
-                if (status){
+                    if (hostName.equalsIgnoreCase(maquina.getHostName())) {
+                        if (maquina.getSistemaOperacional().equalsIgnoreCase("Linux") || maquina.getSistemaOperacional().equalsIgnoreCase("Ubuntu")) {
 
-                    try {
-                        conMySQl.update("UPDATE Comando SET stattus = 0 WHERE idComando = ?", idComando);
+                            if (nomeComando.equalsIgnoreCase("sudo shutdown -h now")) {
+//                                slackDao.desligarMaquina(maquina.getHostName());
 
-                        if (hostName.equalsIgnoreCase(maquina.getHostName())) {
-                            if (maquina.getSistemaOperacional().equalsIgnoreCase("Linux") && maquina.getSistemaOperacional().equalsIgnoreCase("Ubuntu")) {
-
-                                if (nomeComando.equalsIgnoreCase("sudo shutdown -h now")) {
-
-                                    inovacao.desligarMaquinaLinux();
-                                }
-
-                                else if (nomeComando.equalsIgnoreCase("sudo shutdown -r now")) {
-
-
-                                    inovacao.reiniciarMaquinaLinux();
-                                }
+                                inovacao.desligarMaquinaLinux();
                             }
 
-                            else if (maquina.getSistemaOperacional().equalsIgnoreCase("Windows")) {
-                                if (nomeComando.equalsIgnoreCase("shutdown /s /f /t 0")) {
+                            else if (nomeComando.equalsIgnoreCase("sudo shutdown -r now")) {
+//                                slackDao.reiniciarMaquina(maquina.getHostName());
 
+                                inovacao.reiniciarMaquinaLinux();
+                            }
+                        }
 
-                                    inovacao.desligarMaquinaWindows();
-                                }
+                        else if (maquina.getSistemaOperacional().equalsIgnoreCase("Windows")) {
+                            if (nomeComando.equalsIgnoreCase("shutdown /s /f /t 0")) {
+//                                slackDao.desligarMaquina(maquina.getHostName());
 
-                                else if (nomeComando.equalsIgnoreCase("shutdown /r /f /t 0")) {
+                                inovacao.desligarMaquinaWindows();
+                            }
 
+                            else if (nomeComando.equalsIgnoreCase("shutdown /r /f /t 0")) {
+//                                slackDao.reiniciarMaquina(maquina.getHostName());
 
-                                    inovacao.reiniciarMaquinaWindows();
-                                }
+                                inovacao.reiniciarMaquinaWindows();
                             }
                         }
                     }
-
-                    catch (EmptyResultDataAccessException e){
-
-                        System.err.println("Trocar o status do comando deu errado!! %s");
-                        return null; // Retorna null em caso de exceção
-                    }
-
                 }
 
-                else {;
+                catch (EmptyResultDataAccessException e){
 
-                    System.out.println("Comando ja foi executado!");
+                    System.err.println("Trocar o status do comando deu errado!! %s");
+                    return null; // Retorna null em caso de exceção
                 }
+            }
 
-                return nomeComando;
+            else {
+                System.out.println("Comando ja foi executado!");
+            }
+
+            return nomeComando;
         }
 
         catch (EmptyResultDataAccessException e) {
