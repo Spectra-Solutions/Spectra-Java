@@ -91,6 +91,44 @@ public class RedeDao extends Dao{
             log.setMensagem("Erro no cadastro dos dados da Rede no SqlServer!");
             log.gerarLog("erro");
             System.err.println("Erro no cadastro dos dados da Rede no SqlServer!");
+
+            Long variavelAuxiliarConsumoUpload1 = 0L;
+            Long variavelAuxiliarConsumoDownload1 = 0L;
+
+            for (RedeInterface r: redeInterfaces) {
+                variavelAuxiliarConsumoUpload1 += r.getBytesEnviados();
+
+                variavelAuxiliarConsumoDownload1 += r.getBytesRecebidos();
+            }
+
+            String consumoUploadString1 = (ConversorSpectra.formatarBytes(variavelAuxiliarConsumoUpload1));
+
+            consumoUploadString1 = consumoUploadString1.replaceAll("\\.","");
+
+            consumoUploadString1 = consumoUploadString1.replace("," , ".");
+
+            rede.setConsumoUpload(Double.parseDouble(consumoUploadString1));
+
+            String consumoDownloadString1 = (ConversorSpectra.formatarBytes(variavelAuxiliarConsumoDownload1));
+
+            consumoDownloadString1 = consumoDownloadString1.replaceAll("\\.","");
+
+            consumoDownloadString1 = consumoDownloadString1.replace("," , ".");
+
+            rede.setConsumoDownload(Double.parseDouble(consumoDownloadString1));
+
+            String sql1 = "INSERT INTO RegistroComponente (idRegistroComponente, consumoUpload, consumoDownload) VALUES (?, ?, ?)";
+            Integer linhasAlteradas1 = conMysql.update(sql1, rede.getIdRegistro(), rede.getConsumoUpload(), rede.getConsumoDownload());
+
+            if (linhasAlteradas1 > 0){
+                System.out.println("Inserção no Mysql Rede realizada com sucesso!");
+            }
+
+            else {
+                log.setMensagem("Erro no cadastro dos dados da Rede no MySQL!");
+                log.gerarLog("erro");
+                System.err.println("Erro no cadastro dos dados da Rede no MySQL!");
+            }
         }
     }
 }

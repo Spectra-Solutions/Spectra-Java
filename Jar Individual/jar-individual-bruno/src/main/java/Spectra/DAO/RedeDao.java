@@ -93,6 +93,5 @@ public class RedeDao extends Dao{
             log.gerarLog("erro");
             System.err.println("Erro no cadastro dos dados da Rede no MySQL!");
         }
-
     }
 }

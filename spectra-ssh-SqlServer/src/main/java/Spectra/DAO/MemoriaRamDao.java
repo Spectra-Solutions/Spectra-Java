@@ -64,6 +64,19 @@ public class MemoriaRamDao extends Dao{
             log.setMensagem("Erro no cadastro dos dados da Memoria ram no SqlServer!");
             log.gerarLog("erro");
             System.err.println("Erro no cadastro dos dados da Memoria ram no SqlServer!");
+
+            String sql1 = "INSERT INTO RegistroComponente (idRegistroComponente, armazenamentoTotal, consumoAtual, armazenamentoDisponivel) VALUES (?, ?, ?, ?)";
+            Integer linhasAlteradas1 = conMysql.update(sql1, memoriaRam.getIdRegistro(), memoriaRam.getArmazenamentoTotal(), memoriaRam.getConsumoAtual(), memoriaRam.getArmazenamentoDisponivel());
+
+            if (linhasAlteradas1 > 0){
+                System.out.println("Inserção no Mysql MemoriaRam realizada com sucesso!");
+            }
+
+            else {
+                log.setMensagem("Erro no cadastro dos dados da Memoria ram no MySQL!");
+                log.gerarLog("erro");
+                System.err.println("Erro no cadastro dos dados da Memoria ram no MySQL!");
+            }
         }
     }
 }

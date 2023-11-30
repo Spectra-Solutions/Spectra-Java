@@ -62,6 +62,20 @@ public class CpuDao extends Dao{
             log.setMensagem("Erro no cadastro dos dados da cpu no SqlServer!");
             log.gerarLog("erro");
             System.err.println("Erro no cadastro dos dados da cpu no SqlServer!");
+
+            String sql1 = "INSERT INTO RegistroComponente (idRegistroComponente, especificacao, consumoAtual) VALUES (?, ?, ?)";
+            Integer linhasAlteradas1 = conMysql.update(sql1, cpu.getIdRegistro(), cpu.getEspecificacao(), cpu.getConsumoAtual());
+
+            if (linhasAlteradas1 > 0){
+                System.out.println("Inserção no Mysql cpu realizada com sucesso!");
+            }
+
+            else {
+                log.setMensagem("Erro no cadastro dos dados da cpu no MySQL!");
+                log.gerarLog("erro");
+
+                System.err.println("Erro no cadastro dos dados da cpu no MySQL!");
+            }
         }
     }
 }
