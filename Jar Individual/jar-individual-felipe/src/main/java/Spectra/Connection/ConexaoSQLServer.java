@@ -9,7 +9,7 @@ public class ConexaoSQLServer {
         BasicDataSource dataSourceSqlServer = new BasicDataSource();
 
         dataSourceSqlServer.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        dataSourceSqlServer.setUrl("jdbc:sqlserver://3.225.34.140:1433;databaseName=Spectra;encrypt=true;trustServerCertificate=true");
+        dataSourceSqlServer.setUrl("jdbc:sqlserver://44.216.221.58:1433;databaseName=Spectra;encrypt=true;trustServerCertificate=true");
         dataSourceSqlServer.setUsername("Spectra");
         dataSourceSqlServer.setPassword("Spectra123");
 
