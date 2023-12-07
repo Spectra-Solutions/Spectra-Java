@@ -120,11 +120,11 @@ public class IniciarSistema {
 
     public void capturarDados(String nome){
 
-        try {
-            processoDao.getFkMaquina(maqui.getHostName());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            processoDao.getFkMaquina(maqui.getHostName());
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
 
         final long segundos = (1000 * 5);
 

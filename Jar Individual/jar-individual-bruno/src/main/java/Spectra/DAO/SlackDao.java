@@ -41,13 +41,15 @@ public class SlackDao {
         System.out.println(nome);
 
         String sql = """
-                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
-                	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
-                		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
-                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
-                				WHERE Maquina.nome = ?
-                					AND RegistroAvisos.fkComponente = 1
-                						AND RegistroAvisos.fkTipoAviso = 1""";
+                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM RegistroAvisos
+                                	JOIN Componente ON RegistroAvisos.fkComponente = Componente.idComponente
+                                		 JOIN RegistroComponente ON Componente.idComponente = RegistroComponente.fkComponente
+                                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
+                                				WHERE registroAvisos.fkComponente = 1
+                                                    AND registroAvisos.fkTipoAviso = 1
+                                                        AND Maquina.hostName = ?
+                                                            ORDER BY idRegistroAviso
+                                                                DESC""";
         try{
             Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, nome);
 
@@ -64,13 +66,15 @@ public class SlackDao {
                 slack.sendMenssage(json);
             } else {
                 String sql1 = """
-                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
-                	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
-                		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
-                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
-                				WHERE Maquina.nome = ?
-                					AND RegistroAvisos.fkComponente = 1
-                						AND RegistroAvisos.fkTipoAviso = 2""";
+                        SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM RegistroAvisos
+                                	JOIN Componente ON RegistroAvisos.fkComponente = Componente.idComponente
+                                		 JOIN RegistroComponente ON Componente.idComponente = RegistroComponente.fkComponente
+                                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
+                                				WHERE registroAvisos.fkComponente = 1
+                                                    AND registroAvisos.fkTipoAviso = 2
+                                                        AND Maquina.hostName = ?
+                                                            ORDER BY idRegistroAviso
+                                                                DESC""";
 
                 try {
                     Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, nome);
@@ -107,13 +111,15 @@ public class SlackDao {
 
     public void getSelectRam(String nome) throws IOException {
         String sql = """
-                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
-                	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
-                		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
-                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
-                				WHERE Maquina.nome = ?
-                					AND RegistroAvisos.fkComponente = 2
-                						AND RegistroAvisos.fkTipoAviso = 1""";
+                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM RegistroAvisos
+                                	JOIN Componente ON RegistroAvisos.fkComponente = Componente.idComponente
+                                		 JOIN RegistroComponente ON Componente.idComponente = RegistroComponente.fkComponente
+                                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
+                                				WHERE registroAvisos.fkComponente = 2
+                                                    AND registroAvisos.fkTipoAviso = 1
+                                                        AND Maquina.hostName = ?
+                                                            ORDER BY idRegistroAviso
+                                                                DESC""";
         try{
             Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, nome);
 
@@ -130,13 +136,15 @@ public class SlackDao {
                 slack.sendMenssage(json);
             } else {
                 String sql1 = """
-                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
-                	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
-                		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
-                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
-                				WHERE Maquina.nome = ?
-                					AND RegistroAvisos.fkComponente = 2
-                						AND RegistroAvisos.fkTipoAviso = 2""";
+                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM RegistroAvisos
+                                	JOIN Componente ON RegistroAvisos.fkComponente = Componente.idComponente
+                                		 JOIN RegistroComponente ON Componente.idComponente = RegistroComponente.fkComponente
+                                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
+                                				WHERE registroAvisos.fkComponente = 2
+                                                    AND registroAvisos.fkTipoAviso = 2
+                                                        AND Maquina.hostName = ?
+                                                            ORDER BY idRegistroAviso
+                                                                DESC""";
 
                 try {
                     Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, nome);
@@ -173,13 +181,15 @@ public class SlackDao {
 
     public void getSelectDisco(String nome) throws IOException {
         String sql = """
-                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
-                	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
-                		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
-                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
-                				WHERE Maquina.nome = ?
-                					AND RegistroAvisos.fkComponente = 3
-                						AND RegistroAvisos.fkTipoAviso = 1""";
+                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM RegistroAvisos
+                                	JOIN Componente ON RegistroAvisos.fkComponente = Componente.idComponente
+                                		 JOIN RegistroComponente ON Componente.idComponente = RegistroComponente.fkComponente
+                                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
+                                				WHERE registroAvisos.fkComponente = 3
+                                                    AND registroAvisos.fkTipoAviso = 1
+                                                        AND Maquina.hostName = ?
+                                                            ORDER BY idRegistroAviso
+                                                                DESC""";
         try{
             Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, nome);
 
@@ -196,13 +206,15 @@ public class SlackDao {
                 slack.sendMenssage(json);
             } else {
                 String sql1 = """
-                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM Componente
-                	JOIN RegistroAvisos ON RegistroAvisos.fkComponente = Componente.idComponente
-                		JOIN RegistroComponente ON RegistroComponente.fkComponente = Componente.idComponente
-                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
-                				WHERE Maquina.nome = ?
-                					AND RegistroAvisos.fkComponente = 3
-                						AND RegistroAvisos.fkTipoAviso = 2""";
+                SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM RegistroAvisos
+                                	JOIN Componente ON RegistroAvisos.fkComponente = Componente.idComponente
+                                		 JOIN RegistroComponente ON Componente.idComponente = RegistroComponente.fkComponente
+                                			JOIN Maquina ON RegistroComponente.fkMaquina = Maquina.idMaquina
+                                				WHERE registroAvisos.fkComponente = 3
+                                                    AND registroAvisos.fkTipoAviso = 2
+                                                        AND Maquina.hostName = ?
+                                                            ORDER BY idRegistroAviso
+                                                                DESC""";
 
                 try {
                     Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, nome);
