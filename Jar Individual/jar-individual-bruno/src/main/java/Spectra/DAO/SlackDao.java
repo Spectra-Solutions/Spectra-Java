@@ -36,10 +36,7 @@ public class SlackDao {
     }
 
 
-    public void getSelectCpu(String nome) throws IOException {
-
-        System.out.println(nome);
-
+    public void getSelectCpu() throws IOException {
         String sql = """
                 SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM RegistroAvisos
                                 	JOIN Componente ON RegistroAvisos.fkComponente = Componente.idComponente
@@ -51,7 +48,7 @@ public class SlackDao {
                                                             ORDER BY idRegistroAviso
                                                                 DESC""";
         try{
-            Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, nome);
+            Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, maquina.getHostName());
 
             Integer fkTipoAviso = (Integer) resultadoMap.get("fkTipoAviso");
 
@@ -77,7 +74,7 @@ public class SlackDao {
                                                                 DESC""";
 
                 try {
-                    Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, nome);
+                    Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, maquina.getHostName());
                     Integer fkTipoAviso1 = (Integer) resultadoMap1.get("fkTipoAviso");
 
                     if (fkTipoAviso == 2) {
@@ -92,24 +89,18 @@ public class SlackDao {
                     }
 
                 } catch (EmptyResultDataAccessException e){
-                    log.setMensagem(String.format("Não existe select na tabela registro avisos, cpu %s", e));
-                    log.gerarLog("slack");
-
                     System.err.println("Não existe select na tabela registro avisos, cpu");
                 }
             }
 
         } catch (EmptyResultDataAccessException e){
-            log.setMensagem(String.format("Não existe select na tabela registro avisos, cpu %s", e));
-            log.gerarLog("slack");
-
             System.err.println("Não existe select na tabela registro avisos, cpu");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void getSelectRam(String nome) throws IOException {
+    public void getSelectRam() throws IOException {
         String sql = """
                 SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM RegistroAvisos
                                 	JOIN Componente ON RegistroAvisos.fkComponente = Componente.idComponente
@@ -121,7 +112,7 @@ public class SlackDao {
                                                             ORDER BY idRegistroAviso
                                                                 DESC""";
         try{
-            Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, nome);
+            Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, maquina.getHostName());
 
             Integer fkTipoAviso = (Integer) resultadoMap.get("fkTipoAviso");
 
@@ -147,7 +138,7 @@ public class SlackDao {
                                                                 DESC""";
 
                 try {
-                    Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, nome);
+                    Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, maquina.getHostName());
                     Integer fkTipoAviso1 = (Integer) resultadoMap1.get("fkTipoAviso");
 
                     if (fkTipoAviso == 2) {
@@ -162,24 +153,18 @@ public class SlackDao {
                     }
 
                 } catch (EmptyResultDataAccessException e){
-                    log.setMensagem(String.format("Não existe select na tabela registro avisos, ram %s", e));
-                    log.gerarLog("slack");
-
                     System.err.println("Não existe select na tabela registro avisos, ram ");
                 }
             }
 
         } catch (EmptyResultDataAccessException e){
-            log.setMensagem(String.format("Não existe select na tabela registro avisos, ram %s", e));
-            log.gerarLog("slack");
-
             System.err.println("Não existe select na tabela registro avisos, ram");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void getSelectDisco(String nome) throws IOException {
+    public void getSelectDisco() throws IOException {
         String sql = """
                 SELECT TOP 1 RegistroAvisos.registroAviso, RegistroAvisos.fkComponente, RegistroAvisos.fkTaxaAviso, RegistroAvisos.fkTipoAviso FROM RegistroAvisos
                                 	JOIN Componente ON RegistroAvisos.fkComponente = Componente.idComponente
@@ -191,7 +176,7 @@ public class SlackDao {
                                                             ORDER BY idRegistroAviso
                                                                 DESC""";
         try{
-            Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, nome);
+            Map<String, Object> resultadoMap = conSqlServer.queryForMap(sql, maquina.getHostName());
 
             Integer fkTipoAviso = (Integer) resultadoMap.get("fkTipoAviso");
 
@@ -217,7 +202,7 @@ public class SlackDao {
                                                                 DESC""";
 
                 try {
-                    Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, nome);
+                    Map<String, Object> resultadoMap1 = conSqlServer.queryForMap(sql1, maquina.getHostName());
                     Integer fkTipoAviso1 = (Integer) resultadoMap1.get("fkTipoAviso");
 
                     if (fkTipoAviso == 2) {
@@ -232,17 +217,11 @@ public class SlackDao {
                     }
 
                 } catch (EmptyResultDataAccessException e){
-                    log.setMensagem(String.format("Não existe select na tabela registro avisos, disco %s", e));
-                    log.gerarLog("slack");
-
                     System.err.println("Não existe select na tabela registro avisos, disco");
                 }
             }
 
         } catch (EmptyResultDataAccessException e){
-            log.setMensagem(String.format("Não existe select na tabela registro avisos, disco %s", e));
-            log.gerarLog("slack");
-
             System.err.println("Não existe select na tabela registro avisos, disco ");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
